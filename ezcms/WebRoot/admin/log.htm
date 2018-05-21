@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>phpcms 登录</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gbk">
+<META http-equiv=X-UA-Compatible content=IE=EmulateIE7>
+<STYLE type=text/css>
+DIV {
+	DISPLAY: inline-block; OVERFLOW: hidden
+}
+DIV {
+	DISPLAY: block
+}
+.login_box {
+	MARGIN-TOP: -208px; BACKGROUND: url(static/images/login_bg.jpg) no-repeat; LEFT: 50%; MARGIN-LEFT: -301px; OVERFLOW: hidden; WIDTH: 602px; POSITION: absolute; TOP: 50%; HEIGHT: 416px
+}
+.login_iptbox {
+	FONT-SIZE: 12px; LEFT: 50%; MARGIN-LEFT: -280px; OVERFLOW: visible; WIDTH: 560px; COLOR: #ffffff; BOTTOM: 72px; POSITION: absolute; HEIGHT: 30px
+}
+.login_iptbox .ipt {
+	BACKGROUND: url(static/images/ipt_bg.jpg) repeat-x; OVERFLOW: hidden; WIDTH: 110px; COLOR: #000; BORDER-TOP-STYLE: none; LINE-HEIGHT: 24px; MARGIN-RIGHT: 80px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 24px; BORDER-BOTTOM-STYLE: none
+}
+.login_iptbox LABEL {
+	POSITION: relative; TOP: -6px
+}
+.login_iptbox .ipt_reg {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 16px; BACKGROUND: url(static/images/ipt_bg.jpg) repeat-x; PADDING-BOTTOM: 2px; MARGIN-LEFT: 12px; OVERFLOW: hidden; WIDTH: 46px; MARGIN-RIGHT: 16px; PADDING-TOP: 2px; TEXT-ALIGN: left
+}
+.login_tj_btn {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(static/images/login_dl_btn.jpg) no-repeat 0px 0px; FLOAT: right; PADDING-BOTTOM: 0px; MARGIN-LEFT: 16px; WIDTH: 52px; CURSOR: pointer; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 24px; BORDER-BOTTOM-STYLE: none
+}
+.cr {
+	FONT-SIZE: 12px; WIDTH: 100%; COLOR: #ccc; BOTTOM: 58px; POSITION: absolute; TEXT-ALIGN: center
+}
+.cr A {
+	COLOR: #ccc; TEXT-DECORATION: none
+}
+</STYLE>
+
+<SCRIPT language=JavaScript>
+<!--YUMN
+	if(top!=self)
+	if(self!=top) top.location=self.location;
+//-->
+</SCRIPT>
+</HEAD>
+<BODY onload=javascript:document.myform.username.focus();>
+<DIV class=login_box id=login_bg>
+  <DIV class=login_iptbox>
+    <FORM name=myform action="function/dologin.jsp" method=post>
+      <INPUT class=login_tj_btn type=submit name=dosubmit value= >
+      <LABEL>用户名：</LABEL>
+      <INPUT class=ipt name=username>
+      <LABEL>密码：</LABEL>
+      <INPUT class=ipt type=password name=password>
+    </FORM>
+  </DIV>
+  <DIV class=cr>CopyRight 2006-2010 <A href="http://www.sdo.com/" target=_blank>上海盛大网络发展有限公司</A> B2-20040053 <A href="http://www.phpcms.cn/" target=_blank>PHPCMS TEAM</A></DIV>
+</DIV>
+</BODY>
+</HTML>
