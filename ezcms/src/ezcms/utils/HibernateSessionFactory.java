@@ -1,9 +1,11 @@
 package ezcms.utils;
 
-import org.hibernate.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.sun.org.apache.commons.logging.*;
 
 public class HibernateSessionFactory {
 	public static Log log = LogFactory.getLog(HibernateSessionFactory.class) ;
