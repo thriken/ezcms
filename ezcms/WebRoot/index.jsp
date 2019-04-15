@@ -26,9 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />    
 	<link href="/static/css/style.css"  rel="stylesheet" type="text/css" />
-
   </head>
-  
 <body>
   <div class="wrap">
    	<%@ include file="static/html/top_logo.jsp" %><!--/ logo-->
