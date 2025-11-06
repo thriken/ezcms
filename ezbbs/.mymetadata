@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ezbbs"
+  id="myeclipse.1238573939093"
+  context-root="/bbs"
+  j2ee-spec="1.4"
+  archive="ezbbs.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

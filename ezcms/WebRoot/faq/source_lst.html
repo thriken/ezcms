@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ylmf OS-雨林木风Linux操作系统</title>
+<meta name="Keywords" content="雨林木风linux,linux下载,Ylmf OS,linux操作系统,linux开发,Linux组织" />
+<meta name="Description" content="雨林木风linux操作系统(Ylmf Operation System)，旨在为用户提供免费、稳定、功能强大的、值得使用的linux操作系统！" />
+<link href="static/css/style.css"  rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="wrap">
+
+	<div id="header" class="clearfix">
+    	<h1 id="logo"><a href="../index.htm" >Ylmf OS-雨林木风Linux操作系统</a></h1>
+    	<div class="desc">
+        	<p>等候环境对他的事业完全有利才动手的人，将永远不会成功。</p>
+            <p>[在温室中想象南极，谁都可以做到！！] </p>
+        </div>
+        <div id="s115" class="clearfix">
+            <form action="http://115.com/" method="get" target="_blank">
+            
+                <div id="s115_input"><input type="text" name="q" class="int" onfocus="this.parentNode.className='focus'" onblur="if(this.value=='')this.parentNode.className=''" /></div>
+                <input type="submit" value="聚 搜" class="btn" />
+            </form>
+        </div><!--/ search-->
+    </div>
+    <div id="menu">
+        <ul id="language">
+        	<li><a href="" class="bold">简体中文</a><span style="margin:0 5px;">|</span><a href="" >English</a></li>
+        </ul>
+        <ul id="nav">
+       	<li><a href="../index.html" ><span>首 页</span></a></li>
+        <li><a href="../release_note.html" ><span>发布寄语</span></a></li>
+        <li><a href="../download.html" ><span>系统下载</span></a></li>
+        <li><a href="../about.html" ><span>详细特性</span></a></li>
+        <li><a href="../themes.html" ><span>主题下载</span></a></li>
+        <li><a class="current" href="../faq.html" ><span>安装&amp;帮助</span></a></li>
+        <li><a href="javascript:if(confirm('http://www.ylmf.net/thread.php?fid=323  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.net/thread.php?fid=323'"  target="_blank"><span>交流论坛</span></a></li>
+        </ul>
+    </div>
+    
+    <div id="content" class="clearfix">
+    	<div id="help_center">
+        	<div id="help_center_left">
+            	
+                    <script src="static/js/help_center_guide.js"  type="text/javascript" language="javascript"></script>
+
+            </div>
+            
+            <div id="help_center_main">
+            	<div class="help_main_nav"><a id="help_main_nav_home" href="../faq.html" >安装&amp;帮助首页</a> &raquo; 如何设置Linux最快的更新源</div>
+
+              <div class="hcc_box">
+
+　　在linux下，安装软件变得十分简单，你只需要在系统自带的“新立得”软件包管理器里选择想要使用的程序，然后连接上网即可。如果你事先知道想要安装 的程序的名字，那么更简单，你只需要在控制台输入一条简单的命令即可。剩下的事，什么都不用你管了。这一切都是因为系统会自动从源里下载并自动安装这个软件。 <br /><br />
+
+系统安装后，自带的有一个源，但是由于需要选择一个下载速度快的源，另外安装别的一些软件还需要有特殊的源，所以需要修改一下源。<br /><br />
+操作步骤：<br />
+<strong class="blue">1.	进入Ylmf OS系统后，双击桌面上的终端，然后在终端里面输入</strong><br />
+<ol>
+<li>sudo  gedit /etc/apt/sources.list </li>
+</ol>
+<br />
+如图所示：<br />
+<img src="static/images/source/2.jpg"  onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+<strong class="blue">2.	按回车后，输入自己用户的密码即可打开文件</strong><br />
+如图所示：<br />
+<img src="static/images/source/3.jpg"  onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+<strong class="blue">3.	将以下内容复制到文件</strong><br />
+<ol>
+<li>
+deb http://mirrors.163.com/ubuntu/ karmic main restricted universe multiverse<br />
+deb http://mirrors.163.com/ubuntu/ karmic-security main restricted universe multiverse<br />
+deb http://mirrors.163.com/ubuntu/ karmic-updates main restricted universe multiverse<br />
+deb http://mirrors.163.com/ubuntu/ karmic-proposed main restricted universe multiverse<br />
+deb http://mirrors.163.com/ubuntu/ karmic-backports main restricted universe multiverse<br />
+deb-src http://mirrors.163.com/ubuntu/ karmic main restricted universe multiverse<br />
+deb-src http://mirrors.163.com/ubuntu/ karmic-security main restricted universe multiverse<br />
+deb-src http://mirrors.163.com/ubuntu/ karmic-updates main restricted universe multiverse<br />
+deb-src http://mirrors.163.com/ubuntu/ karmic-proposed main restricted universe multiverse<br />
+deb-src http://mirrors.163.com/ubuntu/ karmic-backports main restricted universe multiverse<br />
+</li>
+</ol>
+以上是推荐的源，相对来说更新稳定，速度快<br />
+
+如图所示：<br />
+
+<img src="static/images/source/4.jpg"  onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+ 
+
+<strong class="blue">4.	保存修改后的文件，文件-保存，然后关闭</strong><br />
+
+如图所示：<br />
+
+ <img src="static/images/source/5.jpg"  onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+<strong class="blue">5.	使用修改后的源对系统进行更新</strong><br />
+
+在刚才打开的终端里面输入：<br />
+<ol>
+<li>sudo apt-get update && sudo apt-get upgrade</li>
+
+</ol>
+
+按回车后，根据提示输入自己的密码即可，如图所示：<br />
+
+<img src="static/images/source/6.jpg"  onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+ 
+
+更新过程会需要几分钟时间，网络环境不好的时候需要更长时间<br />
+
+更新过程如图所示：<br />
+<img src="static/images/source/7.jpg"  onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+ 
+教程完毕！<br />
+
+
+  <p style="text-align:center; padding:20px 0;"><a href="../faq.html" >回帮助首页</a>&nbsp;&nbsp;<a href="#header">回到顶部</a></p>
+
+                    
+                    
+              </div><!--/ hcc_box-->
+                
+            </div>
+        
+        </div>
+    </div><!--/ content--> 
+    
+    
+    <div id="footer" class="clearfix">
+        <div class="quick-link">
+       <a href="javascript:if(confirm('http://feedback.115.com/?action=ask&app=105  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://feedback.115.com/?action=ask&app=105'"  class="faq" target="_blank">在线反馈</a> | <a href="javascript:if(confirm('http://www.ylmf.com/aboutus.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.com/aboutus.html'"  target="_blank"><span>关于我们</span></a> | <a href="javascript:if(confirm('http://www.ylmf.com/hr.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.com/hr.html'"  target="_blank"><span>加入雨林木风</span></a> | <a href="javascript:if(confirm('http://www.ylmf.com/contact.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.com/contact.html'"  target="_blank"><span>联系我们</span></a>
+      </div>
+    	<p class="copyright">&copy; 2009 雨林木风 <a href="javascript:if(confirm('http://www.miibeian.gov.cn/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.miibeian.gov.cn/'"  target="_blank">粤ICP备05021225号</a></p>
+
+    </div><!--/ footer-->
+</div><!--/ wrap-->
+</body>
+</html>

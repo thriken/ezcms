@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ylmf OS-雨林木风Linux操作系统</title>
+<meta name="Keywords" content="雨林木风linux,linux下载,Ylmf OS,linux操作系统,linux开发,Linux组织" />
+<meta name="Description" content="雨林木风linux操作系统(Ylmf Operation System)，旨在为用户提供免费、稳定、功能强大的、值得使用的linux操作系统！" />
+<link href="static/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="wrap">
+
+	<div id="header" class="clearfix">
+    	<h1 id="logo"><a href="../index.htm" >Ylmf OS-雨林木风Linux操作系统</a></h1>
+    	<div class="desc">
+        	<p>等候环境对他的事业完全有利才动手的人，将永远不会成功。</p>
+            <p>[在温室中想象南极，谁都可以做到！！] </p>
+        </div>
+        <div id="s115" class="clearfix">
+            <form action="http://115.com/" method="get" target="_blank">
+            
+                <div id="s115_input"><input type="text" name="q" class="int" onfocus="this.parentNode.className='focus'" onblur="if(this.value=='')this.parentNode.className=''" /></div>
+                <input type="submit" value="聚 搜" class="btn" />
+            </form>
+        </div><!--/ search-->
+    </div>
+    <div id="menu">
+        <ul id="language">
+        	<li><a href="" class="bold">简体中文</a><span style="margin:0 5px;">|</span><a href="" >English</a></li>
+        </ul>
+        <ul id="nav">
+       	<li><a href="../index.html" ><span>首 页</span></a></li>
+        <li><a href="../release_note.html" ><span>发布寄语</span></a></li>
+        <li><a href="../download.html" ><span>系统下载</span></a></li>
+        <li><a href="../about.html" ><span>详细特性</span></a></li>
+        <li><a href="../themes.html" ><span>主题下载</span></a></li>
+        <li><a class="current" href="../faq.html" ><span>安装&amp;帮助</span></a></li>
+        <li><a href="javascript:if(confirm('http://www.ylmf.net/thread.php?fid=323  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.net/thread.php?fid=323'" target="_blank"><span>交流论坛</span></a></li>
+        </ul>
+    </div>
+    
+    <div id="content" class="clearfix">
+    	<div id="help_center">
+        	<div id="help_center_left">
+            	
+                    <script src="static/js/help_center_guide.js" type="text/javascript" language="javascript"></script>
+
+            </div>
+            
+            <div id="help_center_main">
+            	<div class="help_main_nav"><a id="help_main_nav_home" href="../faq.html" >安装&amp;帮助首页</a> &raquo; 如何开启3D桌面特效</div>
+
+              <div class="hcc_box">
+              <strong>感谢雨林木风交流论坛网友 <span class="blue">ifnyywyy</span> 提供的教程。</strong><br />
+<strong>原文出处：<a href="javascript:if(confirm('http://www.ylmf.net/read.php?tid=1352674&uid=2076737  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.net/read.php?tid=1352674&uid=2076737'"  target="_blank">http://www.ylmf.net/read.php?tid=1352674&amp;uid=2076737</a></strong><br />
+<br />
+
+              
+<strong class="blue">一、写在前面</strong><br />
+　　本文的设置均是基于ubuntu9.04(准确地说是针对于compizconfig-settings-manager0.8.2)，对于8.10基本适用，8.04有部分设置的位置不同，更低的版本就没尝试过了。。在配置之前务必保证你的系统有良好的互联网接入，有良好的源供使用，并且已经更新了源列表（这些步骤在其它ubuntu教程里比比皆是就不再重复了）。<br />
+
+　　本文所指ubuntu是指实体机安装（包括硬盘安装和wubi安装），因为现在的虚拟机的3D性能还比较差，基本无法开启默认的特效，更不必说后面的更丰富的效果了。<br /><br />
+<strong class="blue">二、设置前配置</strong><br />
+说到特效，往往第一感觉都是显卡要牛逼，内存要大。但是在ubuntu时，特效的要求远远没有windows里变态（不留神说到vista了，M的以前用 1G的内存跑vista那叫一个痛苦）。在ubuntu里集成显卡一样可以感受到梦幻般的桌面特效，兴奋吧，那就开始准备一下吧：<br />
+首先确保你的显卡驱动正确的安装了，。。使用intel集显的童鞋可以跳过这一步，因为intel的驱动都是开源的，ubuntu在安装时就已经集成了驱动，无需另外安装。而对于众多的N卡和A卡的童鞋来说，就得打开系统-系统管理-硬件驱动，如下图<br /><br />
+<img src="static/images/3d/1.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+　　我是N卡，所以显示的是NVIDIA图形加速驱动，其它显卡同学对应。选择一个版本（建议选择版本号较大的），然后点击右下角的激活，系统会自动连接源下载驱动并安装。安装完成之后重新启动，这个驱动就激活了。
+        在驱动激活之后的步骤就是打开系统默认特效，进一步的特效设置依赖于它，打开系统-首选项-外观如下图<br /><br />
+
+<img src="static/images/3d/2.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+  选择视觉效果选项卡，选择扩展，然后关闭。这样就打开了系统自带的特效，这时你尝试着移动一下窗口看看是不是窗口动起来了？呵呵，这只是一个开始。。。一个好消息就是如果你这一步成功了那么之后的特效开启应该也都不成问题。但坏消息是如果你的显卡不能开启这个“扩展”效果，那本文您也不用继续读下去了。。。退散<br />
+
+        之后就是安装compizconfig-settings-manager(以下简称ccsm)，咱们以后的特效设置就全仰仗它了。。在终端里输入<br />
+<ol>
+<li>sudo apt-get install compizconfig-settings-manager</li>
+</ol>
+
+安装完毕这后在系统-首选项里会出来compizconfig设置管理器。。注意ubuntu各版本源里的ccsm的版本是不一样的，这就造成了大家看到的 ccsm的界面不一致，经测试之后我发现，8.10和9.04的ccsm90%的设置是一样的，只是部分地方8.10里是英文,这影响并不大。但是 8.04的ccsm里有的设置就不太一样了，具体表现在设置的位置不同，以及没有高版本的ccsm的一些特效。。。。所以。我建议用8.04的童鞋自己手动下载新版ccsm安装，本文是以9.04自带的ccsm0.8.2版说明。0.8.2版的ccsm源码可以在这里下载http://releases.compiz-fusion.org/0.8.2/，编译安装。<br />
+
+安装成功之后我们的特效设置就万事俱备只欠东风了。。。提前庆祝一下。附ccsm主界面一张<br /><br />
+<img src="static/images/3d/3.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+<strong class="blue">三、特效配置</strong>
+终于来到核心的配置特效部分，相信大家都看过那个ubuntu3D桌面演示的视频，其实看完本文你就会发现那个视频的作者只不过比我们操作得更熟练。。音乐配得更high而已。。<br />
+
+        ubuntu有很多炫目的特效，比如旋转立方体、桌面展览、随机动画、窗口组合等等。在接下来的部分我将一一讲解这些动画的实现。<br />
+
+        在进行这些设置之前，最好各位先把ccsm中“窗口装饰”选项开启，否则可能会出现窗口标题栏丢失之类的诡异问题。。<br />
+
+
+另：在设置特效时有可能会出现比如”XX提供XX效果，该效果也可由XX提供“的提示，这种情况是由于插件之间的互相包含关系引起的，一般选择禁用XX。如果出现”xx的按键组合发生冲突“，一般选择忽略冲突就可以了，还有一点本文中所说super键是指键盘上的win键。<br /><br />
+
+1、旋转立方体<br /><br />
+
+    这恐怕是ubuntu最为著名的特效，其基本效果如下<br /><br />
+<img src="static/images/3d/4.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+打开ccsm，首先选择常规选项，切换到Diskplay settings选项卡，将纹理过滤器(texture filter)设为最佳，取消检测刷新率(detect refresh rate)的选项，将刷新率(refresh rate)设为200（这些可以不做，对立方体没有影响）如下图<br /><br />
+
+
+<img src="static/images/3d/5.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+然后切换到Desktop size选项卡，将第一个，水平虚拟尺寸(horizontal virtual size)设为4，如下图<br /><br />
+
+
+<img src="static/images/3d/6.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+这样才能显示出立方体，你也可以尝试改得更高，来看看待会儿立方体会变成了什么。。<br /><br />
+
+之后就是依次打开ccsm中的桌面立方体<br /><br />
+
+<img src="static/images/3d/7.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+旋转立方体<br /><br />
+
+<img src="static/images/3d/8.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+全部打开之后应该就能使用旋转立方体特效了，注意在启用的时候可能会出现像这样的对话框<br /><br />
+
+
+<img src="static/images/3d/9.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+这种情况是因为某些特效之间的冲突引起的，只需要选择第二个选项禁用XX就行了。打开你的旋转立方体设置选项，切换到binding选项卡，打开rotate cube，查看你设置的初始化按键是什么<br /><br />
+
+<img src="static/images/3d/10.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+
+不出意外应该是CTRL+ALT，那现在就按住CTRL+ALT，然后用鼠标拖放，一个桌面立方体是不是就出现在你的面前了。。。得意吧，好戏还在后面。<br /><br />
+
+    立方体倒影，想不想在旋转立方体的同时看到立方体的倒影？那就继续开启ccsm中的立方体倒影及变形选项<br /><br />
+
+<img src="static/images/3d/11.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+注意，可能会出现下图这样的提示<br /><br />
+
+<img src="static/images/3d/12.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+选择忽略冲突即可，打开之后再按住ctrl+alt拖放，惊奇了吧，倒影有了。。可是旋转立方体也变成了旋转圆柱体了。。嘿嘿，这就是立方体倒影及变形中的一些特效了，打立方体倒影及变形(英语是啥忘记了。。），切换到变形选项卡，将变形设置为“无”<br /><br />
+
+<img src="static/images/3d/13.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+就可以恢复为立方体，这一项还有两个选择，圆柱体和球体，想尝鲜的童鞋可以设置一下试试。<br /><br />
+
+    立方体顶层和底层的图像和立方体天穹。在旋转立方体时大家应该看到顶层和底层是无法显示桌面的，显示的是一张图片，可以根据自己的喜好将这两张图片换了，还是在立方体倒影及变形中， 在立方体盖子选项卡中，打开下面的外观，是不是就看到了“顶部图像文件”和“底部图像文件”，在里面设置就可以了<br /><br />
+
+<img src="static/images/3d/14.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+立方体天穹是指在旋转立方体时的背景，我设成了一张太空的图片，效果如下<br /><br />
+
+
+<img src="static/images/3d/15.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+打开ccsm中的桌面立方体，切换到Apperence选项卡，打开下面的天穹，把天穹右边的选项框打上勾，然后在天穹图像里选择一幅图片<br /><br />
+
+<img src="static/images/3d/16.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+之后再试试旋转立方体，是不是看到了传说中的天穹了。。。<br /><br />
+
+3D窗口，现在的立方体所有的窗口都是在一个平面上，想不想做成下图这种效果？<br /><br />
+
+<img src="static/images/3d/17.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+<img src="static/images/3d/18.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+
+非常简单，开启ccsm中的3d窗口<br /><br />
+
+<img src="static/images/3d/19.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" /><br /><br />
+就行啦现在再试试？<br />
+<br />
+    展开立方体，即unfold cube，这个效果将立方体的各个表面展开，切换到”桌面立方体“设置页面，在”常规“中设置”展开“（unfold)的热键<br /><br />
+
+<img src="static/images/3d/20.jpg" onclick="if(this.width>=680) window.open(this.src);" onload="if(this.width>'700')this.width='680';" />
+                    
+                    <p style="text-align:center; padding:20px 0;"><a href="../faq.html" >回帮助首页</a>&nbsp;&nbsp;<a href="#header">回到顶部</a></p>
+              </div><!--/ hcc_box-->
+                
+            </div>
+        
+        </div>
+    </div><!--/ content--> 
+    
+    
+    <div id="footer" class="clearfix">
+        <div class="quick-link">
+       <a href="javascript:if(confirm('http://feedback.115.com/?action=ask&app=105  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://feedback.115.com/?action=ask&app=105'" class="faq" target="_blank">在线反馈</a> | <a href="javascript:if(confirm('http://www.ylmf.com/aboutus.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.com/aboutus.html'" target="_blank"><span>关于我们</span></a> | <a href="javascript:if(confirm('http://www.ylmf.com/hr.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.com/hr.html'" target="_blank"><span>加入雨林木风</span></a> | <a href="javascript:if(confirm('http://www.ylmf.com/contact.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.ylmf.com/contact.html'" target="_blank"><span>联系我们</span></a>
+      </div>
+    	<p class="copyright">&copy; 2009 雨林木风 <a href="javascript:if(confirm('http://www.miibeian.gov.cn/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ�����ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.miibeian.gov.cn/'" target="_blank">粤ICP备05021225号</a></p>
+
+    </div><!--/ footer-->
+</div><!--/ wrap-->
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+    "files.candidateGuessEncodings": [
+        "utf8",
+        "gb2312",
+        "cp950"
+    ],
+    "files.autoGuessEncoding": true
+}
