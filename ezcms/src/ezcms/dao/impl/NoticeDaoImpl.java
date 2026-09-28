@@ -36,7 +36,7 @@ public class NoticeDaoImpl extends BaseDao implements NoticeDao {
 	}
 
 	public Notice getNewestNotice() throws Exception {
-		String sql = "select top 1 * from ez_Notice order by id desc";
+		String sql = "select * from ez_Notice order by id desc LIMIT 1";
 		try {
 			conn = getConn();
 			pstmt = conn.prepareStatement(sql);

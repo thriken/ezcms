@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
 <%
 String path = request.getContextPath();
@@ -23,10 +23,10 @@ a{text-decoration: none;}
 <table border="1" cellpadding="0" cellspacing="0" style="border: 1px solid #000000;">
 	<tr bgcolor="darkgreen" style="color:#fff;font-size:13px;padding:5px 2px;" >
 		<th width="30" >ID</th>
-		<th width="120" >±êÌâ</th>
-		<th width="400" >ÄÚÈÝ</th>
-		<th width="120" >·¢²¼Ê±¼ä</th>
-		<th width="80" >²Ù×÷</th>
+		<th width="120" >æ ‡é¢˜</th>
+		<th width="400" >å†…å®¹</th>
+		<th width="120" >å‘å¸ƒæ—¶é—´</th>
+		<th width="80" >æ“ä½œ</th>
 	</tr>
 	<%
 		for(Iterator it = nlist.iterator();it.hasNext();){
@@ -36,8 +36,8 @@ a{text-decoration: none;}
 		<td align="center"><%=n.getId() %></td>
 		<td><%=n.getTitle() %></td>
 		<td><%=n.getNotice().length()>40 ? (n.getNotice().substring(0,40) + "........."):n.getNotice() %></td>
-		<td align="center"><%=n.getPostTime().length() ==0 ? "ÎÞ" :(n.getPostTime().length()>10 ?n.getPostTime().substring(0,10):n.getPostTime()) %></td>
-		<td align="center"><a href="">ÐÞ¸Ä</a> <a href="">É¾³ý</a></td>
+		<td align="center"><%=n.getPostTime().length() ==0 ? "æ— " :(n.getPostTime().length()>10 ?n.getPostTime().substring(0,10):n.getPostTime()) %></td>
+		<td align="center"><a href="">ä¿®æ”¹</a> <a href="">åˆ é™¤</a></td>
 	</tr>
 	<%		
 		}

@@ -1,7 +1,7 @@
 /*
  * s2jsp.lg.dao.impl.ReplyDaoImpl.java
  * 2009-6-23
- * ReplyDaoµÄÊµÏÖÀà
+ * ReplyDaoçš„å®ç°ç±»
  */
 package ezbbs.dao.impl;
 
@@ -16,70 +16,70 @@ import ezbbs.entity.Topic;
 
 
 public class TopicDaoImpl extends BaseDao implements TopicDao {
-	private Connection conn = null; // ±£´æÊı¾İ¿âÁ¬½Ó
-	private PreparedStatement pstmt = null; // ÓÃÓÚÖ´ĞĞSQLÓï¾ä
-	private ResultSet rs = null; // ÓÃ»§±£´æ²éÑ¯½á¹û¼¯
+	private Connection conn = null; // ä¿å­˜æ•°æ®åº“è¿æ¥
+	private PreparedStatement pstmt = null; // ç”¨äºæ‰§è¡ŒSQLè¯­å¥
+	private ResultSet rs = null; // ç”¨æˆ·ä¿å­˜æŸ¥è¯¢ç»“æœé›†
 
 	/**
-	 * Ìí¼ÓÖ÷Ìâ
+	 * æ·»åŠ ä¸»é¢˜
 	 * 
 	 * @param topic
-	 * @return Ôö¼ÓÌõÊı
+	 * @return å¢åŠ æ¡æ•°
 	 */
 	public int addTopic(Topic topic) {
 		String sql = "insert into TBL_TOPIC(title,content,publishTime,modifyTime,uId,boardId) values(?,?,?,?,"
 				+ topic.getUid() + "," + topic.getBoardId() + ")";
 		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-				.format(new Date()); // È¡µÃÈÕÆÚÊ±¼ä
+				.format(new Date()); // å–å¾—æ—¥æœŸæ—¶é—´
 		String[] parm = { topic.getTitle(), topic.getContent(), time, time };
-		System.out.println("Ìí¼Ó³É¹¦!");
-		return this.executeSQL(sql, parm); // Ö´ĞĞsql£¬²¢·µ»ØÓ°ÏìĞĞÊı
+		System.out.println("æ·»åŠ æˆåŠŸ!");
+		return this.executeSQL(sql, parm); // æ‰§è¡Œsqlï¼Œå¹¶è¿”å›å½±å“è¡Œæ•°
 	}
 
 	/**
-	 * É¾³ıÖ÷Ìâ
+	 * åˆ é™¤ä¸»é¢˜
 	 * 
 	 * @param topicId
-	 * @return É¾³ıÌõÊı
+	 * @return åˆ é™¤æ¡æ•°
 	 */
 	public int deleteTopic(int topicId) {
 		String sql = "delete from TBL_TOPIC where topicId=" + topicId;
-		return this.executeSQL(sql, null); // Ö´ĞĞsql£¬²¢·µ»ØÓ°ÏìĞĞÊı
+		return this.executeSQL(sql, null); // æ‰§è¡Œsqlï¼Œå¹¶è¿”å›å½±å“è¡Œæ•°
 	}
 
 	/**
-	 * ¸üĞÂÖ÷Ìâ
+	 * æ›´æ–°ä¸»é¢˜
 	 * 
 	 * @param topic
-	 * @return ¸üĞÂÌõÊı
+	 * @return æ›´æ–°æ¡æ•°
 	 */
 	public int updateTopic(Topic topic) {
 		String sql = "update TBL_TOPIC set title=?, content=?, modifyTime=? where topicId="
 				+ topic.getTopicId();
 		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-				.format(new Date()); // È¡µÃÈÕÆÚÊ±¼ä
+				.format(new Date()); // å–å¾—æ—¥æœŸæ—¶é—´
 		String[] parm = { topic.getTitle(), topic.getContent(), time };
-		return this.executeSQL(sql, parm); // Ö´ĞĞsql£¬²¢·µ»ØÓ°ÏìĞĞÊı
+		return this.executeSQL(sql, parm); // æ‰§è¡Œsqlï¼Œå¹¶è¿”å›å½±å“è¡Œæ•°
 	}
 
 	/**
-	 * ²éÕÒÒ»¸öÖ÷ÌâµÄÏêÏ¸ĞÅÏ¢
+	 * æŸ¥æ‰¾ä¸€ä¸ªä¸»é¢˜çš„è¯¦ç»†ä¿¡æ¯
 	 * 
 	 * @param topicId
-	 * @return Ö÷ÌâĞÅÏ¢
+	 * @return ä¸»é¢˜ä¿¡æ¯
 	 */
 	public Topic findTopic(int topicId) {
 		String sql = "select * from TBL_TOPIC where topicId=?";
 		Topic topic = null;
 		try {
-			conn = this.getConn(); // »ñµÃÊı¾İ¿âÁ¬½Ó
-			pstmt = conn.prepareStatement(sql); // µÃµ½Ò»¸öPreparedStatement¶ÔÏó
-			pstmt.setInt(1, topicId); // ÉèÖÃtopicIdÎª²ÎÊıÖµ
-			rs = pstmt.executeQuery(); // Ö´ĞĞsql£¬È¡µÃ²éÑ¯½á¹û¼¯
+			conn = this.getConn(); // è·å¾—æ•°æ®åº“è¿æ¥
+			pstmt = conn.prepareStatement(sql); // å¾—åˆ°ä¸€ä¸ªPreparedStatementå¯¹è±¡
+			pstmt.setInt(1, topicId); // è®¾ç½®topicIdä¸ºå‚æ•°å€¼
+			rs = pstmt.executeQuery(); // æ‰§è¡Œsqlï¼Œå–å¾—æŸ¥è¯¢ç»“æœé›†
 
-			/* ½«½á¹û¼¯ÖĞµÄĞÅÏ¢È¡³ö±£´æµ½topic¶ÔÏóÖĞ£¬Ñ­»·×î¶àÖ»»áÖ´ĞĞÒ»´Î */
+			/* å°†ç»“æœé›†ä¸­çš„ä¿¡æ¯å–å‡ºä¿å­˜åˆ°topicå¯¹è±¡ä¸­ï¼Œå¾ªç¯æœ€å¤šåªä¼šæ‰§è¡Œä¸€æ¬¡ */
 			while (rs.next()) {
-				topic = new Topic(); // Ö÷Ìâ¶ÔÏó
+				topic = new Topic(); // ä¸»é¢˜å¯¹è±¡
 				topic.setTopicId(rs.getInt("topicId"));
 				topic.setTitle(rs.getString("title"));
 				topic.setContent(rs.getString("content"));
@@ -88,39 +88,41 @@ public class TopicDaoImpl extends BaseDao implements TopicDao {
 				topic.setUid(rs.getInt("uId"));
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); // ´¦ÀíÒì³£
+			e.printStackTrace(); // å¤„ç†å¼‚å¸¸
 		} finally {
-			this.closeAll(conn, pstmt, rs); // ÊÍ·Å×ÊÔ´
+			this.closeAll(conn, pstmt, rs); // é‡Šæ”¾èµ„æº
 		}
 		return topic;
 	}
 
 	/**
-	 * ²éÕÒÖ÷ÌâList
+	 * æŸ¥æ‰¾ä¸»é¢˜List
 	 * 
 	 * @param page
-	 * @return Ö÷ÌâList
+	 * @return ä¸»é¢˜List
 	 */
 	public List findListTopic(int page, int boardId) {
-		List list = new ArrayList(); // ÓÃÀ´±£´æÖ÷Ìâ¶ÔÏóÁĞ±í
+		List list = new ArrayList(); // ç”¨æ¥ä¿å­˜ä¸»é¢˜å¯¹è±¡åˆ—è¡¨
 		int pageSize = 10;
-		int rowBegin = 0; // ¿ªÊ¼ĞĞÊı£¬±íÊ¾Ã¿Ò³µÚÒ»Ìõ¼ÇÂ¼ÔÚÊı¾İ¿âÖĞµÄĞĞÊı
+		int rowBegin = 0; // å¼€å§‹è¡Œæ•°ï¼Œè¡¨ç¤ºæ¯é¡µç¬¬ä¸€æ¡è®°å½•åœ¨æ•°æ®åº“ä¸­çš„è¡Œæ•°
+		String sql = "";
 		if (page < 1) {
 			page = 1;
-			String sql = "select top " + pageSize + " * from TBL_TOPIC where boardId=" + boardId + "order by publishTime desc";
-		} else
-			rowBegin = pageSize * (page - 1); // °´Ò³ÊıÈ¡µÃ¿ªÊ¼ĞĞÊı£¬ÉèÃ¿Ò³¿ÉÒÔÏÔÊ¾10Ìõ»Ø¸´
-		String sql = "select top " + pageSize + " * from TBL_TOPIC where boardId=" + boardId + " and topicId not in(select top " + rowBegin + " topicId from TBL_TOPIC where boardId=" + boardId + " order by publishTime desc ) order by publishTime desc";
+			sql = "select * from TBL_TOPIC where boardId=" + boardId + " order by publishTime desc limit " + pageSize;
+		} else {
+			rowBegin = pageSize * (page - 1); // æŒ‰é¡µæ•°å–å¾—å¼€å§‹è¡Œæ•°ï¼Œè®¾æ¯é¡µå¯ä»¥æ˜¾ç¤º10æ¡å›å¤
+			sql = "select * from TBL_TOPIC where boardId=" + boardId + " order by publishTime desc limit " + rowBegin + "," + pageSize;
+		}
 
 		System.out.println(sql);
 		try {
-			conn = this.getConn(); // »ñµÃÊı¾İ¿âÁ¬½Ó
-			pstmt = conn.prepareStatement(sql); // µÃµ½Ò»¸öPreparedStatement¶ÔÏó
-			rs = pstmt.executeQuery(); // Ö´ĞĞSQL£¬µÃµ½½á¹û¼¯
+			conn = this.getConn(); // è·å¾—æ•°æ®åº“è¿æ¥
+			pstmt = conn.prepareStatement(sql); // å¾—åˆ°ä¸€ä¸ªPreparedStatementå¯¹è±¡
+			rs = pstmt.executeQuery(); // æ‰§è¡ŒSQLï¼Œå¾—åˆ°ç»“æœé›†
 
-			/* ½«½á¹û¼¯ÖĞµÄĞÅÏ¢È¡³ö±£´æµ½listÖĞ */
+			/* å°†ç»“æœé›†ä¸­çš„ä¿¡æ¯å–å‡ºä¿å­˜åˆ°listä¸­ */
 			while (rs.next()) {
-				Topic topic = new Topic(); // Ö÷Ìâ¶ÔÏó
+				Topic topic = new Topic(); // ä¸»é¢˜å¯¹è±¡
 				topic.setTopicId(rs.getInt("topicId"));
 				topic.setTitle(rs.getString("title"));
 				topic.setContent(rs.getString("content"));
@@ -131,26 +133,26 @@ public class TopicDaoImpl extends BaseDao implements TopicDao {
 				list.add(topic);
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); // ´¦ÀíÒì³£
+			e.printStackTrace(); // å¤„ç†å¼‚å¸¸
 		} finally {
-			this.closeAll(conn, pstmt, rs); // ÊÍ·Å×ÊÔ´
+			this.closeAll(conn, pstmt, rs); // é‡Šæ”¾èµ„æº
 		}
 		return list;
 	}
 
-	// ¸ù¾İboardId²éÕÒTopicÖ÷Ìâ
+	// æ ¹æ®boardIdæŸ¥æ‰¾Topicä¸»é¢˜
 	public List findTopicList(int boardId) {
 		String sql = "select * from TBL_TOPIC where boardId=" + boardId;
 		List listTopic = new ArrayList();
 		Topic topic = null;
 		try {
-			conn = this.getConn(); // »ñµÃÊı¾İ¿âÁ¬½Ó
-			pstmt = conn.prepareStatement(sql); // µÃµ½Ò»¸öPreparedStatement¶ÔÏó
-			rs = pstmt.executeQuery(); // Ö´ĞĞSQL£¬µÃµ½½á¹û¼¯
+			conn = this.getConn(); // è·å¾—æ•°æ®åº“è¿æ¥
+			pstmt = conn.prepareStatement(sql); // å¾—åˆ°ä¸€ä¸ªPreparedStatementå¯¹è±¡
+			rs = pstmt.executeQuery(); // æ‰§è¡ŒSQLï¼Œå¾—åˆ°ç»“æœé›†
 
-			/* ½«½á¹û¼¯ÖĞµÄĞÅÏ¢È¡³ö±£´æµ½listÖĞ */
+			/* å°†ç»“æœé›†ä¸­çš„ä¿¡æ¯å–å‡ºä¿å­˜åˆ°listä¸­ */
 			while (rs.next()) {
-				topic = new Topic(); // Ö÷Ìâ¶ÔÏó
+				topic = new Topic(); // ä¸»é¢˜å¯¹è±¡
 				topic.setTopicId(rs.getInt("topicId"));
 				topic.setTitle(rs.getString("title"));
 				topic.setContent(rs.getString("content"));
@@ -160,49 +162,49 @@ public class TopicDaoImpl extends BaseDao implements TopicDao {
 				listTopic.add(topic);
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); // ´¦ÀíÒì³£
+			e.printStackTrace(); // å¤„ç†å¼‚å¸¸
 		} finally {
-			this.closeAll(conn, pstmt, rs); // ÊÍ·Å×ÊÔ´
+			this.closeAll(conn, pstmt, rs); // é‡Šæ”¾èµ„æº
 		}
 		return listTopic;
 	}
 
 	/**
-	 * ¸ù¾İ°æ¿éidÈ¡µÃ¸Ã°æ¿éµÄÖ÷ÌâÊı
+	 * æ ¹æ®ç‰ˆå—idå–å¾—è¯¥ç‰ˆå—çš„ä¸»é¢˜æ•°
 	 * 
 	 * @param boardId
-	 * @return Ö÷ÌâÊı
+	 * @return ä¸»é¢˜æ•°
 	 */
 	public int findCountTopic(int boardId) {
-		int count = 0; // Ö÷ÌâÊı
+		int count = 0; // ä¸»é¢˜æ•°
 		String sql = "select count(*) from TBL_TOPIC where boardId=" + boardId;
 		try {
 			conn = this.getConn();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				count = rs.getInt(1); // È¡µÃÖ÷ÌâÊı
+				count = rs.getInt(1); // å–å¾—ä¸»é¢˜æ•°
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); // ´¦ÀíÒì³£
+			e.printStackTrace(); // å¤„ç†å¼‚å¸¸
 		} finally {
-			this.closeAll(conn, pstmt, rs); // ÊÍ·Å×ÊÔ´
+			this.closeAll(conn, pstmt, rs); // é‡Šæ”¾èµ„æº
 		}
 		return count;
 	}
 
-	/* ²éÕÒËùÓĞTopic */
+	/* æŸ¥æ‰¾æ‰€æœ‰Topic */
 	public List findTopicList() {
 		String sql = "select * from TBL_TOPIC";
 		Topic topic = null;
-		List listTopic = new ArrayList(); // ÓÃÀ´±£´æÖ÷Ìâ¶ÔÏóÁĞ±í
+		List listTopic = new ArrayList(); // ç”¨æ¥ä¿å­˜ä¸»é¢˜å¯¹è±¡åˆ—è¡¨
 		try {
-			conn = this.getConn(); // »ñµÃÊı¾İ¿âÁ¬½Ó
-			pstmt = conn.prepareStatement(sql); // µÃµ½Ò»¸öPreparedStatement¶ÔÏó
-			rs = pstmt.executeQuery(); // Ö´ĞĞSQL£¬µÃµ½½á¹û¼¯
-			/* ½«½á¹û¼¯ÖĞµÄĞÅÏ¢È¡³ö±£´æµ½listÖĞ */
+			conn = this.getConn(); // è·å¾—æ•°æ®åº“è¿æ¥
+			pstmt = conn.prepareStatement(sql); // å¾—åˆ°ä¸€ä¸ªPreparedStatementå¯¹è±¡
+			rs = pstmt.executeQuery(); // æ‰§è¡ŒSQLï¼Œå¾—åˆ°ç»“æœé›†
+			/* å°†ç»“æœé›†ä¸­çš„ä¿¡æ¯å–å‡ºä¿å­˜åˆ°listä¸­ */
 			while (rs.next()) {
-				topic = new Topic(); // Ö÷Ìâ¶ÔÏó
+				topic = new Topic(); // ä¸»é¢˜å¯¹è±¡
 				topic.setTopicId(rs.getInt("topicId"));
 				topic.setTitle(rs.getString("title"));
 				topic.setContent(rs.getString("content"));
@@ -213,9 +215,9 @@ public class TopicDaoImpl extends BaseDao implements TopicDao {
 				listTopic.add(topic);
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); // ´¦ÀíÒì³£
+			e.printStackTrace(); // å¤„ç†å¼‚å¸¸
 		} finally {
-			this.closeAll(conn, pstmt, rs); // ÊÍ·Å×ÊÔ´
+			this.closeAll(conn, pstmt, rs); // é‡Šæ”¾èµ„æº
 		}
 
 		return listTopic;
@@ -224,44 +226,44 @@ public class TopicDaoImpl extends BaseDao implements TopicDao {
 	public static void main(String[] args) {
 		TopicDaoImpl tdi = new TopicDaoImpl();
 		Topic topic = new Topic();
-		/* Ìí¼Ó */
-		// topic.setTitle("ÄãÉµB1");
-		// topic.setContent("ÎÒÊÇµÚÒ»ÉµBµÄÈË");
+		/* æ·»åŠ  */
+		// topic.setTitle("ä½ å‚»B1");
+		// topic.setContent("æˆ‘æ˜¯ç¬¬ä¸€å‚»Bçš„äºº");
 		// topic.setUid(3);
 		// topic.setBoardId(3);
 		// tdi.addTopic(topic);
-		/* É¾³ı */
+		/* åˆ é™¤ */
 		// tdi.deleteTopic(1);
-		/* ¸ù¾İtopicIdĞŞ¸ÄÄÚÈİ */
+		/* æ ¹æ®topicIdä¿®æ”¹å†…å®¹ */
 		// topic.setTopicId(3);
-		// topic.setTitle("Äã³¬±¿");
-		// topic.setContent("Äã±¿µÃ¿ÉÁ¯!!!");
+		// topic.setTitle("ä½ è¶…ç¬¨");
+		// topic.setContent("ä½ ç¬¨å¾—å¯æ€œ!!!");
 		// tdi.updateTopic(topic);
-		// /*²éÕÒ*/
+		// /*æŸ¥æ‰¾*/
 		// tdi.findTopic(9).getInfo();
 		// tdi.findCountTopic(1);
-		// List findListTopic = tdi.findListTopic(1, 7); // È¡µÃÖ÷ÌâÁĞ±í
+		// List findListTopic = tdi.findListTopic(1, 7); // å–å¾—ä¸»é¢˜åˆ—è¡¨
 		// for (int i = 0; i < findListTopic.size(); i++) {
 		// topic = (Topic) findListTopic.get(i);
 		// System.out.println(i + 1 + "\t" + topic.getTitle());
 		//		}
-		/* ¸ù¾İboardId²éÕÒTopicÖ÷Ìâ */
+		/* æ ¹æ®boardIdæŸ¥æ‰¾Topicä¸»é¢˜ */
 		// List findTopic = tdi.findTopicList(4);
 		// for(int i=0;i<findTopic.size();i++) {
-		// topic = (Topic)findTopic.get(i); // Ö÷Ìâ¶ÔÏó
-		// System.out.println("µÚi="+i);
-		// System.out.println("Ö÷ÌâID£º"+topic.getTopicId());
-		// System.out.println("Ö÷ÌâÃû³Æ£º"+topic.getTitle());
-		// System.out.println("Ö÷ÌâÄÚÈİ£º"+topic.getContent());
+		// topic = (Topic)findTopic.get(i); // ä¸»é¢˜å¯¹è±¡
+		// System.out.println("ç¬¬i="+i);
+		// System.out.println("ä¸»é¢˜IDï¼š"+topic.getTopicId());
+		// System.out.println("ä¸»é¢˜åç§°ï¼š"+topic.getTitle());
+		// System.out.println("ä¸»é¢˜å†…å®¹ï¼š"+topic.getContent());
 		// }
-		/* È¡³öËùÓĞÖ÷Ìâ */
+		/* å–å‡ºæ‰€æœ‰ä¸»é¢˜ */
 		// List listTopic = tdi.findTopicList();
 		// for(int i=0;i<listTopic.size();i++) {
-		// topic = (Topic)listTopic.get(i); // Ö÷Ìâ¶ÔÏó
-		// System.out.println("µÚi="+i);
-		// System.out.println("Ö÷ÌâID£º"+topic.getTopicId());
-		// System.out.println("Ö÷ÌâÃû³Æ£º"+topic.getTitle());
-		// System.out.println("Ö÷ÌâÄÚÈİ£º"+topic.getContent());
+		// topic = (Topic)listTopic.get(i); // ä¸»é¢˜å¯¹è±¡
+		// System.out.println("ç¬¬i="+i);
+		// System.out.println("ä¸»é¢˜IDï¼š"+topic.getTopicId());
+		// System.out.println("ä¸»é¢˜åç§°ï¼š"+topic.getTitle());
+		// System.out.println("ä¸»é¢˜å†…å®¹ï¼š"+topic.getContent());
 		// }
 	}
 }

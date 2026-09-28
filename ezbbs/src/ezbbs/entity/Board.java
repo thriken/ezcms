@@ -1,16 +1,16 @@
 /*
  * 2009-6-23
- * °æ¿éÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 package ezbbs.entity;
 
-// °æ¿é
+// ï¿½ï¿½ï¿½
 
 public class Board {
 
-	private int boardId; // ÓÃÀ´Î¨Ò»±êÊ¶°æ¿é
-	private String boardName; // °æ¿éÃû³Æ
-	private int parentId; // Ö÷°æ¿éid
+	private int boardId; // ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½
+	private String boardName; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int parentId; // ï¿½ï¿½ï¿½ï¿½ï¿½id
 	private int boardIcon ;
 
 	public int getBoardIcon() {
@@ -43,15 +43,5 @@ public class Board {
 
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
-	}
-
-	/**
-	 * Êä³ö°æ¿éÐÅÏ¢
-	 */
-	public void getBoardInfo() {
-		System.out.println("====°å¿éÐÅÏ¢====");
-		System.out.println("°å¿éid£º" + boardId);
-		System.out.println("°å¿éÃû³Æ£º" + boardName);
-		System.out.println("Ö÷°æ¿éid:" + parentId + "\n");
 	}
 }

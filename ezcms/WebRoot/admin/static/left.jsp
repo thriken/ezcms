@@ -1,81 +1,231 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%
-request.setCharacterEncoding("GBK");
+request.setCharacterEncoding("UTF-8");
 String menu = request.getParameter("m");
 String name = (String)session.getAttribute("Admin_Login");
  %>
 
 <html>
 <head>
-    <title>×ó²à²Ëµ¥</title>
-	<style type="text/css" >
-	ul, ol { list-style:none; }
-	body{font-size:12px;}
-	#menu { clear:both;background-repeat:no-repeat; margin-top:3px;margin-bottom:3px; position:relative;margin-left:-30px;width:110px;}
-	li{cursor: hand;}
-	li a{padding-left:15px;padding-top:9px;margin-top:3px;height:30px;width:100px;background: url(images/qqicons.gif) 0 -223px no-repeat; }
-	li a:hover{padding-left:10px;padding-top:9px;margin-top:3px;height:30px;width:100px;background-position: 0 -128px;}
-	span{text-align: center;}
+    <title>å·¦ä¾§èœå•</title>
+	<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	body {
+		font-family: 'Microsoft YaHei', Arial, sans-serif;
+		font-size: 14px;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: #333;
+		min-height: 100vh;
+	}
+	
+	#menutop {
+		background: rgba(255, 255, 255, 0.95);
+		border-radius: 8px;
+		margin: 15px 10px;
+		padding: 12px 15px;
+		text-align: center;
+		font-size: 16px;
+		font-weight: bold;
+		color: #2c3e50;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+	
+	#menutop span {
+		color: #e74c3c;
+		font-weight: bold;
+	}
+	
+	#menu {
+		margin: 10px;
+	}
+	
+	#nav {
+		list-style: none;
+		background: rgba(255, 255, 255, 0.95);
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 0;
+	}
+	
+	#nav li {
+		border-bottom: none;
+		transition: all 0.3s ease;
+		display: inline-block;
+		white-space: nowrap;
+	}
+	
+	#nav li:hover {
+		background: rgba(52, 152, 219, 0.1);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+		border-radius: 4px;
+	}
+	
+	#nav li a {
+		display: inline-block;
+		padding: 12px 15px;
+		text-decoration: none;
+		color: #2c3e50;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		position: relative;
+		border-left: 3px solid transparent;
+		border-radius: 4px;
+		margin: 2px;
+	}
+	
+	#nav li a:hover {
+		color: #3498db;
+		background: rgba(52, 152, 219, 0.1);
+		border-left: 3px solid #3498db;
+		padding-left: 18px;
+		transform: scale(1.05);
+	}
+	
+	#nav li a:before {
+		content: "â–¶";
+		position: absolute;
+		left: 6px;
+		color: #bdc3c7;
+		font-size: 10px;
+		transition: all 0.3s ease;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	#nav li a:hover:before {
+		color: #3498db;
+		transform: translateY(-50%) translateX(2px);
+	}
+	
+	#nav li a span {
+		display: inline;
+		text-align: left;
+	}
+	
+	.line {
+		height: 1px;
+		background: linear-gradient(to right, transparent, #bdc3c7, transparent);
+		margin: 10px 0;
+	}
+	
+	/* ä¸åŒèœå•ç±»å‹çš„ç‰¹æ®Šæ ·å¼ */
+	#nav li a[id="1"] { border-left-color: #e74c3c; }
+	#nav li a[id="2"] { border-left-color: #3498db; }
+	#nav li a[id="3"] { border-left-color: #2ecc71; }
+	
+	#nav li a[id="1"]:hover { border-left-color: #e74c3c; background: rgba(231, 76, 60, 0.05); }
+	#nav li a[id="2"]:hover { border-left-color: #3498db; background: rgba(52, 152, 219, 0.05); }
+	#nav li a[id="3"]:hover { border-left-color: #2ecc71; background: rgba(46, 204, 113, 0.05); }
+	
+	/* å“åº”å¼è®¾è®¡ */
+	@media (max-width: 768px) {
+		#menutop {
+			margin: 10px 5px;
+			padding: 10px;
+			font-size: 14px;
+		}
+		
+		#nav {
+			flex-direction: column;
+			align-items: stretch;
+		}
+		
+		#nav li {
+			display: block;
+			width: 100%;
+		}
+		
+		#nav li a {
+			display: block;
+			padding: 10px 12px;
+			font-size: 13px;
+			margin: 0;
+			text-align: center;
+		}
+		
+		#nav li a:before {
+			display: none;
+		}
+	}
 	</style> 
 	<script type="text/javascript">
 		function mmclick(id){
-			alert(id);
-			for(var i = 0;i>-1;i++)
-			document.getElementById(id).style.backgroundPosition='0 -128px';
+			// ç§»é™¤åŸæœ‰çš„alertï¼Œæ·»åŠ å¹³æ»‘ç‚¹å‡»æ•ˆæœ
+			var element = document.getElementById(id);
+			if(element) {
+				element.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+				setTimeout(function() {
+					element.style.backgroundColor = '';
+				}, 300);
+			}
 		}
 	</script>   
 </head>
-<body bgcolor="#f8fcfc">
+<body>
 <%
   if(session.getAttribute("Admin_Login") == null)
     {
 	%>
-	<div>ÇëÏÈµÇÂ¼£¡</div>
+	<div>è¯·å…ˆç™»å½•ï¼</div>
 	<%
   }else{
 	%>
-	<div id=menutop style="border:solid 1px #eeeeee;margin:0 0 0 15px;width:85px;height:20px;font-size:14px;text-align: center">
-		»¶Ó­ <span style="color:green"><%=name %></span>
+	<div id=menutop >
+		æ¬¢è¿ <span style="color:green"><%=name %></span>
 	</div><br />
 	<div id=menu>
 		<ul id=nav>
 		<%
 		if(menu.equals("menu")){
 		%>
-			<li><a id=1 href="../inc/menu.jsp"  target="main" onclick="mmclick('1')"><span>²Ëµ¥¹ÜÀí</span></a></li>
-			<li><a id=2 href="../inc/menu.jsp"  target="main" onclick="mmclick('2')"><span>Ìí¼ÓÖ÷²Ëµ¥</span></a></li>
-			<li><a id=3 href="../inc/menu.jsp"  target="main" onclick="mmclick('3')"><span>Ìí¼Ó×Ó²Ëµ¥</span></a></li>
+			<li><a id=1 href="../inc/menu.jsp"  target="main" onclick="mmclick('1')"><span>èœå•ç®¡ç†</span></a></li>
+			<li><a id=2 href="../inc/menu.jsp"  target="main" onclick="mmclick('2')"><span>æ·»åŠ ä¸»èœå•</span></a></li>
+			<li><a id=3 href="../inc/menu.jsp"  target="main" onclick="mmclick('3')"><span>æ·»åŠ å­èœå•</span></a></li>
 		<%	
 		}
 		if(menu.equals("index")){
 		%>
-			<li><a id=1 href="../inc/quick.jsp"  target="main" onclick="mmclick('1')"><span>¿ì½İÑ¡Ïî</span></a></li>
-			<li><a id=2 href="../static/main.jsp"  target="main" onclick="mmclick('2')"><span>»¶Ó­Ò³</span></a></li>
+			<li><a id=1 href="../inc/quick.jsp"  target="main" onclick="mmclick('1')"><span>å¿«æ·é€‰é¡¹</span></a></li>
+			<li><a id=2 href="../static/main.jsp"  target="main" onclick="mmclick('2')"><span>æ¬¢è¿é¡µ</span></a></li>
 		<%		
 		}
 		if(menu.equals("notice")){
 		%>
-			<li><a id=2 href="../inc/notice.jsp"  target="main" onclick="mmclick('2')"><span>¹«¸æÁĞ±í</span></a></li>
-			<li><a id=1 href="../inc/addnotice.jsp"  target="main" onclick="mmclick('1')"><span>Ìí¼Ó¹«¸æ</span></a></li>
+			<li><a id=2 href="../inc/notice.jsp"  target="main" onclick="mmclick('2')"><span>å…¬å‘Šåˆ—è¡¨</span></a></li>
+			<li><a id=1 href="../inc/addnotice.jsp"  target="main" onclick="mmclick('1')"><span>æ·»åŠ å…¬å‘Š</span></a></li>
 		<%		
 		}
 		if(menu.equals("news")){
 		%>
-			<li><a id=1 href="../inc/news.jsp"  target="main" onclick="mmclick('1')"><span>ĞÂÎÅÁĞ±í</span></a></li>
-			<li><a id=2 href="../inc/newsclass.jsp"  target="main" onclick="mmclick('2')"><span>ĞÂÎÅÀ¸Ä¿</span></a></li>
-			<li><a id=3 href="../inc/addnews.jsp"  target="main" onclick="mmclick('3')"><span>Ìí¼ÓĞÂÎÅ</span></a></li>
+			<li><a id=1 href="../inc/news.jsp"  target="main" onclick="mmclick('1')"><span>æ–°é—»åˆ—è¡¨</span></a></li>
+			<li><a id=2 href="../inc/newsclass.jsp"  target="main" onclick="mmclick('2')"><span>æ–°é—»æ ç›®</span></a></li>
+			<li><a id=3 href="../inc/addnews.jsp"  target="main" onclick="mmclick('3')"><span>æ·»åŠ æ–°é—»</span></a></li>
 		<%		
 		}
 		if(menu.equals("user")){
 		%>
-			<li><a id=2 href="../inc/users.jsp"  target="main" onclick="mmclick('2')"><span>ÓÃ»§ÁĞ±í</span></a></li>
-			<li><a id=1 href="../inc/adduser.jsp"  target="main" onclick="mmclick('1')"><span>Ìí¼ÓÓÃ»§</span></a></li>
+			<li><a id=2 href="../inc/users.jsp"  target="main" onclick="mmclick('2')"><span>ç”¨æˆ·åˆ—è¡¨</span></a></li>
+			<li><a id=1 href="../inc/adduser.jsp"  target="main" onclick="mmclick('1')"><span>æ·»åŠ ç”¨æˆ·</span></a></li>
 		<%		
 		}
 		if(menu.equals("ad")){
 		%>
-			<li><a id=2 href="../inc/ads.jsp"  target="main" onclick="mmclick('2')"><span>¹ã¸æÁĞ±í</span></a></li>
-			<li><a id=1 href="../inc/addad.jsp"  target="main" onclick="mmclick('1')"><span>Ìí¼Ó¹ã¸æ</span></a></li>
+			<li><a id=2 href="../inc/ads.jsp"  target="main" onclick="mmclick('2')"><span>å¹¿å‘Šåˆ—è¡¨</span></a></li>
+			<li><a id=1 href="../inc/addad.jsp"  target="main" onclick="mmclick('1')"><span>æ·»åŠ å¹¿å‘Š</span></a></li>
 		<%		
 		}
 		%>

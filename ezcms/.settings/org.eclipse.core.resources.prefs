@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
-encoding//WebRoot/admin/login.jsp=UTF-8
+encoding//WebRoot/admin/admin_login.jsp=GB18030
+encoding//WebRoot/admin/login.jsp=GBK
 encoding//WebRoot/img/img1_images.jsp=UTF-8
 encoding//WebRoot/img/img2_num.jsp=UTF-8
+encoding/<project>=GBK
+separateDerivedEncodings=true

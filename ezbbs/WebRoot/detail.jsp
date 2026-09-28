@@ -1,15 +1,15 @@
-<%@ page language="java" pageEncoding="GBK"import="java.util.*,ezbbs.entity.*,ezbbs.dao.*,ezbbs.dao.impl.*,java.sql.*"%>
+<%@ page language="java" pageEncoding="UTF-8" import="java.util.*,ezbbs.entity.*,ezbbs.dao.*,ezbbs.dao.impl.*,java.sql.*" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+ path + "/";
 	String curPath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+request.getRequestURI()+"?"+request.getQueryString();
 
-	request.setCharacterEncoding("GBK"); // ÉèÖÃ×Ö·û¼¯
+	request.setCharacterEncoding("UTF-8"); // è®¾ç½®å­—ç¬¦é›†
 
 	ReplyDao replyDao = new ReplyDaoImpl();
-	BoardDao boardDao = new BoardDaoImpl(); // µÃµ½°æ¿éDaoµÄÊµÀı
-	TopicDao topicDao = new TopicDaoImpl(); // µÃµ½Ö÷ÌâDaoµÄÊµÀı
-	UserDao userDao = new UserDaoImpl(); // µÃµ½ÓÃ»§DaoµÄÊµÀı
+	BoardDao boardDao = new BoardDaoImpl(); // å¾—åˆ°ç‰ˆå—Daoçš„å®ä¾‹
+	TopicDao topicDao = new TopicDaoImpl(); // å¾—åˆ°ä¸»é¢˜Daoçš„å®ä¾‹
+	UserDao userDao = new UserDaoImpl(); // å¾—åˆ°ç”¨æˆ·Daoçš„å®ä¾‹
 
 	String boardId = request.getParameter("bid");
 	int BoardId = Integer.parseInt(boardId);
@@ -28,13 +28,13 @@
 	User user = new User();
 	int count = replyDao.findCountReply(TopicId);
 	user = userDao.findUser(topic.getUid());
-	//·¢ÌûÈËĞÅÏ¢
+	//å‘å¸–äººä¿¡æ¯
 	User postUser = userDao.findUser(topicTitle.getUid());
 	String puName = postUser.getUName();
 	String puHead = postUser.getHead();
 	String puregt = postUser.getRegTime();
 	int puLevel = postUser.getUlevel();
-	System.out.println("µÈ¼¶"+puLevel);
+	System.out.println("ç­‰çº§"+puLevel);
 	String puManage = postUser.getUmanage();
 	
 	int puId = postUser.getUId();
@@ -48,25 +48,25 @@
 <html>
 	<head>
 		<base href="<%=basePath%>">
-		<title>¼òµ¥JSPÂÛÌ³  >> <%=boardName.getBoardName()%> >> <%=topicTitle.getTitle()%></title>
+		<title>ç®€å•JSPè®ºå›  >> <%=boardName.getBoardName()%> >> <%=topicTitle.getTitle()%></title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
-		<META http-equiv=Content-Type content="text/html; charset=gbk">
+		<META http-equiv=Content-Type content="text/html; charset=UTF-8">
 		<Link rel="stylesheet" type="text/css" href="style/style.css" />
 	</head>
 
-	<BODY style="width:100%">
+	<BODY>
 		<div>
 			<DIV>
 				<IMG src="image/logo.gif" />
 			</DIV>
-			<!--      ÓÃ»§ĞÅÏ¢¡¢µÇÂ¼¡¢×¢²á        -->
+			<!--      ç”¨æˆ·ä¿¡æ¯ã€ç™»å½•ã€æ³¨å†Œ        -->
 			<%
 				if (session.getAttribute("user") == null) {
 			%>
 			<DIV class="h">
-				ÄúÉĞÎ´ <a href="denglu.jsp?ref=<%=curPath %>">µÇÂ¼</a> &nbsp;| &nbsp;<A href="reg.jsp">×¢²á</A> |
+				æ‚¨å°šæœª <a href="denglu.jsp?ref=<%=curPath %>">ç™»å½•</a> &nbsp;| &nbsp;<A href="reg.jsp">æ³¨å†Œ</A> |
 			</DIV>
 			<%
 				} else {
@@ -74,21 +74,21 @@
 					loguserId = loginUser.getUId();
 			%>
 			<DIV class="h">
-				ÄúºÃ£º<A href="myinfo.jsp"><%=loginUser.getUName()%></A> &nbsp;| &nbsp; <A href="manage/doLogout.jsp">µÇ³ö</A> |
+				æ‚¨å¥½ï¼š<A href="myinfo.jsp"><%=loginUser.getUName()%></A> &nbsp;| &nbsp; <A href="manage/doLogout.jsp">ç™»å‡º</A> |
 			</DIV>
 			<%
 				}
 			%>
 
 
-			<!--      Ö÷Ìå        -->
+			<!--      ä¸»ä½“        -->
 
 			<DIV>
 				<br />
-				<!--      µ¼º½        -->
+				<!--      å¯¼èˆª        -->
 				<DIV>
 					&gt;&gt;
-					<B><a href="index.jsp">ÂÛÌ³Ê×Ò³</a> </B>&gt;&gt;
+					<B><a href="index.jsp">è®ºå›é¦–é¡µ</a> </B>&gt;&gt;
 					<B><a href="list.jsp?bid=<%=BoardId%>"><%=boardName.getBoardName()%></a>
 					</B> &gt;&gt;
 					<B><A href="detail.jsp?bid=<%=BoardId%>&tid=<%=TopicId%>"><%=topicTitle.getTitle()%></A>
@@ -96,41 +96,41 @@
 				</DIV>
 			</DIV>
 			<br />
-			<!--      »Ø¸´¡¢ĞÂÌû        -->
+			<!--      å›å¤ã€æ–°å¸–        -->
 			<DIV>
 				<A href="post.jsp?bid=<%=BoardId%>"><IMG src="image/post.gif" name="td_post" border="0" id=td_post> </A>
 				<A href="reply.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>"><IMG src="image/reply.gif" name="td_post" border="0" id=td_post></A>
 			</DIV>
 			<br />
-			<!--         ·­ Ò³         -->
+			<!--         ç¿» é¡µ         -->
 
 			<%
 				Reply reply = new Reply();
 				int replyId = reply.getReplyId();
 
-				//------µÃµ½µ±Ç°Ò³ÂëÊı------
-				int diPage = 1;//Ä¬ÈÏ½«µ±Ç°Ò³ÂëÊıÉèÎª1
+				//------å¾—åˆ°å½“å‰é¡µç æ•°------
+				int diPage = 1;//é»˜è®¤å°†å½“å‰é¡µç æ•°è®¾ä¸º1
 				String pages = request.getParameter("diPage");
 				if (pages == null || pages.length() == 0)
 					pages = "1";
 				try {
 					diPage = Integer.parseInt(pages);
-					System.out.println("ÕâÊÇµÚ£º" + diPage + "Ò³");
+					System.out.println("è¿™æ˜¯ç¬¬ï¼š" + diPage + "é¡µ");
 				} catch (Exception e) {
 					diPage = 1;
 				}
 
-				int pageSize = 20;//Ã¿Ò³ÏÔÊ¾µÄ¼ÇÂ¼ÌõÊı
+				int pageSize = 20;//æ¯é¡µæ˜¾ç¤ºçš„è®°å½•æ¡æ•°
 
-				//------µÃµ½·ÖÒ³Çé¿öÏà¹ØĞÅÏ¢------
+				//------å¾—åˆ°åˆ†é¡µæƒ…å†µç›¸å…³ä¿¡æ¯------
 				int recordCount = count;
 				int pageCount = 0;
 				if (recordCount % pageSize == 0) {
 					pageCount = recordCount / pageSize;
-					System.out.println("Ò»¹²ÓĞ£º" + pageCount + "Ò³");
+					System.out.println("ä¸€å…±æœ‰ï¼š" + pageCount + "é¡µ");
 				} else {
 					pageCount = recordCount / pageSize + 1;
-					System.out.println("Ò»¹²ÊÇ£º" + pageCount + "Ò³");
+					System.out.println("ä¸€å…±æ˜¯ï¼š" + pageCount + "é¡µ");
 				}
 			%>
 
@@ -138,8 +138,8 @@
 				<%
 					if (diPage != 1) {
 				%>
-				<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=1">Ê×Ò³</a>&nbsp;
-				<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage - 1)%>">ÉÏÒ»Ò³</a>&nbsp;
+				<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=1">é¦–é¡µ</a>&nbsp;
+				<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage - 1)%>">ä¸Šä¸€é¡µ</a>&nbsp;
 				<%
 					}
 				%>
@@ -147,28 +147,28 @@
 					if (diPage != pageCount) {
 				%>
 				<a
-					href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage + 1)%>">ÏÂÒ»Ò³</a>&nbsp;
+					href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage + 1)%>">ä¸‹ä¸€é¡µ</a>&nbsp;
 				<a
-					href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=pageCount%>">Î²Ò³</a>&nbsp;
+					href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=pageCount%>">å°¾é¡µ</a>&nbsp;
 				<%
 					}
 				%>
-				µ±Ç°<%=diPage%>/<%=pageCount%>Ò³
+				å½“å‰<%=diPage%>/<%=pageCount%>é¡µ
 			</div>
-			<!--      ±¾Ò³Ö÷ÌâµÄ±êÌâ        -->
+			<!--      æœ¬é¡µä¸»é¢˜çš„æ ‡é¢˜        -->
 			<DIV>
 				<TABLE cellSpacing="0" cellPadding="0" border="0" width="100%">
 					<TR class="tr1">
-						<td class="h" width="16%" style="border-right:1px solid #cccc00;font-size:12px">×÷Õß</td>
+						<td class="h" width="16%" style="border-right:1px solid #cccc00;font-size:12px">ä½œè€…</td>
 						<td class="h" style="font-size: 18px">
-							<b>±¾Ò³Ö÷Ìâ:</b>
+							<b>æœ¬é¡µä¸»é¢˜:</b>
 							<%=topicTitle.getTitle()%>
 						</td>
 						<td class="h1" style="font-size: 14px">
-							<b>»Ø¸´Êı£º</b><%=count%>
+							<b>å›å¤æ•°ï¼š</b><%=count%>
 						</td>
 					</TR>
-					<!--      Ö÷Ìâ        -->
+					<!--      ä¸»é¢˜        -->
 					<TR class="tr2">
 						<TD rowSpan="2" width="16%" style="border-right:1px solid #cccc00" align="left">
 							<font color="#000000">
@@ -185,16 +185,16 @@
 								<div id="usergif"></div>
 							<%
 								} else{
-								 if(puManage.equals("¹ÜÀíÔ±")){
+								 if(puManage.equals("ç®¡ç†å‘˜")){
 									puManage = "admin";
 								} 
-								if(puManage.equals("³¬¼¶°æÖ÷")){
+								if(puManage.equals("è¶…çº§ç‰ˆä¸»")){
 									puManage = "smaster";
 								} 
-								if(puManage.equals("°æÖ÷")){
+								if(puManage.equals("ç‰ˆä¸»")){
 									puManage = "master";
 								} 
-								if(puManage.equals("ÊµÏ°°æÖ÷")){
+								if(puManage.equals("å®ä¹ ç‰ˆä¸»")){
 									puManage = "expmaster";
 									}
 							 %>
@@ -206,13 +206,13 @@
 							<div id="usergif" style="background-image:url(image/level/<%=puLevel %>.gif)">	
 							</div><br />
 							<div style="font-size: 12px">
-								×¢²áÊ±¼ä:<%=puregt.substring(0,19) %></div></font>
+								æ³¨å†Œæ—¶é—´:<%=puregt.substring(0,19) %></div></font>
 						</TD>
 						<TD>
-							<b>»°ÌâÄÚÈİ£º</b>
+							<b>è¯é¢˜å†…å®¹ï¼š</b>
 						</TD>
 						<TD align="right">
-							<b>Â¥Ö÷</b>
+							<b>æ¥¼ä¸»</b>
 						</TD>
 					</tr>
 					<tr>
@@ -221,8 +221,8 @@
 							<%=topicContent.getContent()%>
 							</div>
 							
-							<DIV class="tipad" style="padding-top: 5px;height:20px;">·¢±íÊ±¼ä£º
-								<SPAN class="gray">[ <%=tpubTime.getPublishTime().substring(0,19) %> ]</SPAN> ×îºóĞŞ¸Ä:
+							<DIV class="tipad" style="padding-top: 5px;height:20px;">å‘è¡¨æ—¶é—´ï¼š
+								<SPAN class="gray">[ <%=tpubTime.getPublishTime().substring(0,19) %> ]</SPAN> æœ€åä¿®æ”¹:
 								<SPAN class="gray">[ <%=tmodTime.getModifyTime().substring(0,19) %> ]</SPAN>
 								<%
 								if (loguserId == puId){
@@ -246,7 +246,7 @@
 			</DIV>
 			<br />
 
-			<!--      »Ø¸´        -->
+			<!--      å›å¤        -->
 
 			<%
 				int rowBegin = 0;
@@ -269,7 +269,7 @@
 						System.out.println(ruManage + ruLevel);
 			%>
 
-			<div><%=(i++) + 1%>Â¥
+			<div><%=(i++) + 1%>æ¥¼
 			</div>
 
 			<DIV class="t">
@@ -289,16 +289,16 @@
 								<div id="usergif"></div>
 							<%
 								} else{
-								 if(ruManage.equals("¹ÜÀíÔ±")){
+								 if(ruManage.equals("ç®¡ç†å‘˜")){
 									ruManage = "admin";
 								} 
-								if(ruManage.equals("³¬¼¶°æÖ÷")){
+								if(ruManage.equals("è¶…çº§ç‰ˆä¸»")){
 									ruManage = "smaster";
 								} 
-								if(ruManage.equals("°æÖ÷")){
+								if(ruManage.equals("ç‰ˆä¸»")){
 									ruManage = "master";
 								} 
-								if(ruManage.equals("ÊµÏ°°æÖ÷")){
+								if(ruManage.equals("å®ä¹ ç‰ˆä¸»")){
 									ruManage = "expmaster";
 									}
 							 %>
@@ -310,7 +310,7 @@
 							<div id="usergif" style="background-image:url(image/level/<%=ruLevel %>.gif)" >
 							</div>
 							  <br />
-							<div style="font-size: 12px">×¢²á:<%=user.getRegTime().substring(0,19)%></div>
+							<div style="font-size: 12px">æ³¨å†Œ:<%=user.getRegTime().substring(0,19)%></div>
 						</TH>
 						<TH style="WIDTH: 80%;height:200px;">
 							<div style="height:120px;">
@@ -318,7 +318,7 @@
 							</div>
 							
 							<DIV class="tipad">
-								·¢±íÊ±¼ä£º<SPAN class="gray">[ <%=reply.getPublishTime().substring(0,19) %> ]</SPAN> ×îºóĞŞ¸Ä:<SPAN class="gray">[ <%=reply.getModifyTime().substring(0,19) %> ]</SPAN>
+								å‘è¡¨æ—¶é—´ï¼š<SPAN class="gray">[ <%=reply.getPublishTime().substring(0,19) %> ]</SPAN> æœ€åä¿®æ”¹:<SPAN class="gray">[ <%=reply.getModifyTime().substring(0,19) %> ]</SPAN>
 								<%
 								if (loguserId == ruId){
 								%>
@@ -345,29 +345,29 @@
 				}
 			%>
 		</div>
-		<!--         ·­ Ò³         -->
+		<!--         ç¿» é¡µ         -->
 
 		<div>
 			<%
 				if (diPage != 1) {
 			%>
-			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=1">Ê×Ò³</a>&nbsp;
-			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage - 1)%>">ÉÏÒ»Ò³</a>&nbsp;
+			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=1">é¦–é¡µ</a>&nbsp;
+			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage - 1)%>">ä¸Šä¸€é¡µ</a>&nbsp;
 			<%
 				}
 			%>
 			<%
 				if (diPage != pageCount) {
 			%>
-			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage + 1)%>">ÏÂÒ»Ò³</a>&nbsp;
-			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=pageCount%>">Î²Ò³</a>&nbsp;
+			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=(diPage + 1)%>">ä¸‹ä¸€é¡µ</a>&nbsp;
+			<a href="detail.jsp?&bid=<%=BoardId%>&tid=<%=TopicId%>&rid=<%=replyId%>&diPage=<%=pageCount%>">å°¾é¡µ</a>&nbsp;
 			<%
 				}
 			%>
-			µ±Ç°<%=diPage%>/<%=pageCount%>Ò³
+			å½“å‰<%=diPage%>/<%=pageCount%>é¡µ
 		</div>
 
-	<!--      ÉùÃ÷        --><BR />
+	<!--      å£°æ˜        --><BR />
 	<%@ include file="static/bottom.jsp" %>
 </BODY>
 </HTML>

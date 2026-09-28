@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
 <%
 AuthorDao auDao = new AuthorDaoImpl();
@@ -17,19 +17,19 @@ Author au = null;
 <%
 if(aulist == null){
 	%>
-	<div align="center">ÔÝÎÞÓÃ»§</div>
+	<div align="center">æš‚æ— ç”¨æˆ·</div>
 	<%
 	}else{
  %>
 <table border="1" cellpadding="0" cellspacing="0" style="border: 1px solid #000000;">
 	<tr bgcolor="darkgreen" style="color:#fff;font-size:13px;padding:5px 2px;" >
 		<th width="30">ID
-		<th width="100">µÇÂ¼Ãû
-		<th width="120">ÃÜÂë
-		<th width="30">ÐÔ±ð
-		<th width="120">ÉúÈÕ
-		<th width="120">×¢²áÊ±¼ä
-		<th width="80">²Ù×÷
+		<th width="100">ç™»å½•å
+		<th width="120">å¯†ç 
+		<th width="30">æ€§åˆ«
+		<th width="120">ç”Ÿæ—¥
+		<th width="120">æ³¨å†Œæ—¶é—´
+		<th width="80">æ“ä½œ
 	</tr>
 	<%	
 		for(Iterator it = aulist.iterator();it.hasNext();){
@@ -39,10 +39,10 @@ if(aulist == null){
 		<td align="center"><%=au.getAuthorId() %></td>
 		<td align="center"><%=au.getName() %></td>
 		<td><%=au.getPassword() %></td>
-		<td align="center"><%=au.getSex()==0?"ÄÐ":"Å®" %></td>
-		<td align="center"><%=au.getBirthday().length() ==0 ? "ÎÞ" :au.getBirthday() %></td>
-		<td align="center"><%=au.getRegTime().length() ==0 ? "ÎÞ" :au.getRegTime() %></td>
-		<td align="center"><a href="">ÐÞ¸Ä</a> <a href="">É¾³ý</a></td>
+		<td align="center"><%=au.getSex()==0?"ç”·":"å¥³" %></td>
+		<td align="center"><%=au.getBirthday().length() ==0 ? "æ— " :au.getBirthday() %></td>
+		<td align="center"><%=au.getRegTime().length() ==0 ? "æ— " :au.getRegTime() %></td>
+		<td align="center"><a href="">ä¿®æ”¹</a> <a href="">åˆ é™¤</a></td>
 	</tr>
 	<%		
 			}

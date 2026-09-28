@@ -1,8 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
-<% /****** ²Ëµ¥¹ÜÀí ******/ %>
+<% /****** èœå•ç®¡ç† ******/ %>
 <%
-request.setCharacterEncoding("GBK");
+request.setCharacterEncoding("UTF-8");
 String mname = request.getParameter("mid");
 int mid = 1;
 if(mname!=null){
@@ -18,7 +18,7 @@ LeftMenu lm = null;
 
 <html>
 <head>    
-    <title>²Ëµ¥¹ÜÀí</title>
+    <title>èœå•ç®¡ç†</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0"> 
@@ -32,7 +32,7 @@ LeftMenu lm = null;
 	<tr>
 		<td style="border-right: 3px solid green;">
 			<div style="height:500px;width:100px;font-weight: +1;font-size:13px;font:Verdana, Arial, Helvetica, sans-serif;" align="center">
-			&gt;&gt;Ö÷²Ëµ¥Ïî&lt;&lt;<br />
+			&gt;&gt;ä¸»èœå•é¡¹&lt;&lt;<br />
 	<%
 		for(Iterator it = mmlist.iterator();it.hasNext();){
 		mm = (MainMenu)it.next();
@@ -48,10 +48,10 @@ LeftMenu lm = null;
 		</td>
 		<td>
 			<div style="height:500px;width:750px;text-align: center;font-size:14px;">
-				&gt;&gt;×Ó²Ëµ¥&lt;&lt;<br /><hr  style="border-bottom:3px solid green;width:100% " />
+				&gt;&gt;å­èœå•&lt;&lt;<br /><hr  style="border-bottom:3px solid green;width:100% " />
 				<table border=1 cellpadding="0" cellspacing="0" style="border:1px solid green;">
 				<tr bgcolor="green" style="color:#fcfcfc;font-size:13px;padding:5px 0px 3px 0px;">
-					<th width="70">ÏÔÊ¾Ë³Ğò</th><th width="140">²Ëµ¥Ãû³Æ</th><th width="80">ÀàĞÍ</th><th width="250">²ÎÊı</th><th width="140px;">²Ù×÷</th>
+					<th width="70">æ˜¾ç¤ºé¡ºåº</th><th width="140">èœå•åç§°</th><th width="80">ç±»å‹</th><th width="250">å‚æ•°</th><th width="140px;">æ“ä½œ</th>
 				</tr>
 			<%
 				lmlist = lmDao.getLeftMenu(mid);
@@ -68,24 +68,24 @@ LeftMenu lm = null;
 						<%
 							if(lm.getIsUrl()==0){
 						 %>
-						<input type="radio" name="isUrl" value="0" checked="checked">±ğÃû<input type="radio" name="isUrl" value="1">Á´½Ó
+						<input type="radio" name="isUrl" value="0" checked="checked">åˆ«å<input type="radio" name="isUrl" value="1">é“¾æ¥
 						<%
 						}else{
 						 %>
-						<input type="radio" name="isUrl" value="0">±ğÃû<input type="radio" name="isUrl" value="1" checked="checked">Á´½Ó
+						<input type="radio" name="isUrl" value="0">åˆ«å<input type="radio" name="isUrl" value="1" checked="checked">é“¾æ¥
 						<%
 							}
 						 %>
 						</td>
 						<td align="center"><input class="inputsolid" name="text" value="<%=lm.getText() %>" style="width:230px;" /></td>
-						<td align="center"><input class="buttonsolid" type="submit" value="Ìá½»" style="width:50px;">&nbsp;&nbsp;<input class="buttonsolid" type="button" value="É¾³ı" style="width:50px;"></td>
+						<td align="center"><input class="buttonsolid" type="submit" value="æäº¤" style="width:50px;">&nbsp;&nbsp;<input class="buttonsolid" type="button" value="åˆ é™¤" style="width:50px;"></td>
 					  </form>
 					</tr>
 		<%
 			}
 	%>			
 				</table>
-				<div style="margin:5px 25px;" align="left">¹²ÓĞ<%=lmlist.size() %>¸ö×Ó²Ëµ¥¡£<span style="color:red">&lt;±ğÃûÎÄ¼şÎ»ÓÚamdin/incÄ¿Â¼ÏÂ,Á´½ÓÎÄ¼şÎ»ÓÚamdinÄ¿Â¼ÏÂ¡£</span>&gt;</div>
+				<div style="margin:5px 25px;" align="left">å…±æœ‰<%=lmlist.size() %>ä¸ªå­èœå•ã€‚<span style="color:red">&lt;åˆ«åæ–‡ä»¶ä½äºamdin/incç›®å½•ä¸‹,é“¾æ¥æ–‡ä»¶ä½äºamdinç›®å½•ä¸‹ã€‚</span>&gt;</div>
 			</div>	
 		</td>
 	</tr>

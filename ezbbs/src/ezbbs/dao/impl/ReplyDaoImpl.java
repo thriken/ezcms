@@ -72,19 +72,14 @@ public class ReplyDaoImpl extends BaseDao implements ReplyDao {
 	public List findListReply(int page, int topicId) {
 		List list = new ArrayList(); // 用来保存主题对象列表
 		int pageSize = 20;
-		int rowBegin = 0; // 开始行数，表示每页第一条记录在数据库中的行数
+		int offset = 0; // MySQL偏移量，表示从第几条记录开始查询
 		if (page < 1) {
 			page = 1;
-			String sql = " select top " + pageSize
-					+ " * from TBL_REPLY where topicId=" + topicId
-					+ " order by replyId asc";
-		} else
-			rowBegin = pageSize * (page - 1); // 按页数取得开始行数，设每页可以显示20条回复
-		String sql = " select top " + pageSize
-				+ " * from TBL_REPLY where replyId not in(select top "
-				+ rowBegin + " replyId from TBL_REPLY where topicId=" + topicId
-				+ " order by publishTime asc )and topicId=" + topicId
-				+ " order by publishTime asc";
+		} else {
+			offset = pageSize * (page - 1); // 按页数取得偏移量，设每页可以显示20条回复
+		}
+		String sql = "SELECT * FROM TBL_REPLY WHERE topicId=" + topicId 
+				+ " ORDER BY publishTime ASC LIMIT " + pageSize + " OFFSET " + offset;
 		System.out.println(sql);
 		try {
 			conn = this.getConn(); // 获得数据库连接
@@ -218,10 +213,10 @@ public class ReplyDaoImpl extends BaseDao implements ReplyDao {
 		// System.out.println("replyId:" + reply.getReplyId());
 		// System.out.println("content:" + reply.getContent());
 		// }
-		 List findlistReply = rdi.findListReply(4, 15);
-		 for (int i = 0; i < findlistReply.size(); i++) {
-		 reply = (Reply) findlistReply.get(i);
-		 System.out.println(i + 1 + "\t" + reply.getContent());
-				 }
+		List findlistReply = rdi.findListReply(1, 15);
+		for (int i = 0; i < findlistReply.size(); i++) {
+			reply = (Reply) findlistReply.get(i);
+			System.out.println(i + 1 + "\t" + reply.getContent());
+		}
 	}
 }

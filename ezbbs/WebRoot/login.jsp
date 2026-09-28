@@ -75,8 +75,6 @@ function check() {
 		</DIV>
 		<!--      声明        -->
 		<BR />
-		<CENTER class="gray">
-			Powered By <a href="http://023sc.info" target="_blank">爱源码网</a> &copy; 版权所有 2011
-		</CENTER>
+		<%@ include file="static/bottom.jsp" %>
 	</BODY>
 </HTML>

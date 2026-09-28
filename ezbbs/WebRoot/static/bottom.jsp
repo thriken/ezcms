@@ -1,11 +1,10 @@
-<%@ page language="java" import="java.util.*,ezbbs.entity.*,ezbbs.dao.impl.*,ezbbs.dao.*" pageEncoding="GBK"%>
+<%@ page language="java" import="java.util.*,ezbbs.entity.*,ezbbs.dao.*,ezbbs.dao.impl.*" pageEncoding="UTF-8"%>
 <%
 BbsinfoDao binfoDao = new BbsinfoDaoImpl();
 BbsInfo bbsinfo = new BbsInfo();
-	bbsinfo = binfoDao.getInfo();
-%>
+bbsinfo = binfoDao.getInfo();
 
+%>
 	<div id="bottom" class="gray" align="right">
-			 <%=bbsinfo.getName() %> Ver <%=bbsinfo.getVersion() %> &copy;&nbsp;2011 ∞Ê»®À˘”–<br /><%=bbsinfo.getUrl() %>
-			
+		<%=bbsinfo.getName() %> <%=bbsinfo.getVersion() %> &copy;&nbsp;2011 CopyRight<br /><%=bbsinfo.getUrl() %>
 	</div>

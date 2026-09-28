@@ -1,7 +1,7 @@
-<%@ page language="java"  pageEncoding="GB18030"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
 <%
 if(session.getAttribute("Admin_Login") != null){
 	session.removeAttribute("Admin_Login");
-	response.sendRedirect("../index.jsp");
+	response.sendRedirect("../login.jsp");
 }
 %>

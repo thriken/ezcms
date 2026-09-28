@@ -12,7 +12,11 @@ public class BaseDao {
 	public final static String URL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=bbs"; // url
 	public final static String DBNAME = "sa"; // 数据库用户名
 	public final static String DBPASS = ""; // 数据库密码
-
+	
+	public final static String MYSQLDRIVER = "com.mysql.jdbc.Driver";
+	public final static String MYURL = "jdbc:mysql://127.127.126.3:3306/bbs?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai";
+	public final static String MYDBNAME = "root";
+	public final static String MYDBPASS = "";
 	/**
 	 * 得到数据库连接
 	 * 
@@ -27,8 +31,8 @@ public class BaseDao {
 	//}
 	
 	public Connection getConn() throws ClassNotFoundException, SQLException {
-		Class.forName(DRIVER); // 注册驱动
-		Connection conn = DriverManager.getConnection(URL, DBNAME, DBPASS); // 获得数据库连接
+		Class.forName(MYSQLDRIVER); // 注册驱动
+		Connection conn = DriverManager.getConnection(MYURL, MYDBNAME, MYDBPASS); // 获得数据库连接
 		return conn; // 返回连接
 	}
 

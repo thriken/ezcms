@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
 <%
 NewsDao newsDao = new NewsDaoImpl();
@@ -25,11 +25,11 @@ nlist = (ArrayList<News>)newsDao.listNews();
 <table border="1" cellpadding="0" cellspacing="0" style="border: 1px solid #000000;">
 	<tr bgcolor="darkgreen" style="color:#fff;font-size:13px;padding:5px 2px;" >
 		<th width="30">ID
-		<th width="100">À¸Ä¿
-		<th width="350">±êÌâ
-		<th width="80">×÷Õß
-		<th width="120">·¢²¼Ê±¼ä
-		<th width="80">²Ù×÷
+		<th width="100">æ ç›®
+		<th width="350">æ ‡é¢˜
+		<th width="80">ä½œè€…
+		<th width="120">å‘å¸ƒæ—¶é—´
+		<th width="80">æ“ä½œ
 	</tr>
 	<%
 		for(Iterator it = nlist.iterator();it.hasNext();){
@@ -42,8 +42,8 @@ nlist = (ArrayList<News>)newsDao.listNews();
 		<td align="center"><%=nc.getName() %></td>
 		<td><%=n.getTitle() %></td>
 		<td align="center"><%=au.getName() %></td>
-		<td align="center"><%=n.getPostTime().length() ==0 ? "ÎÞ" :(n.getPostTime().length()>10 ?n.getPostTime().substring(0,10):n.getPostTime()) %></td>
-		<td align="center"><a href="">ÐÞ¸Ä</a> <a href="">É¾³ý</a></td>
+		<td align="center"><%=n.getPostTime().length() ==0 ? "æ— " :(n.getPostTime().length()>10 ?n.getPostTime().substring(0,10):n.getPostTime()) %></td>
+		<td align="center"><a href="">ä¿®æ”¹</a> <a href="">åˆ é™¤</a></td>
 	</tr>
 	<%		
 		}

@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="GBK"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%--@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*,java.util.*" --%>
 <%
 
@@ -19,12 +19,12 @@
         <div class="box">
             <div id="sys-download" class="box-bd m3c2">
             	<div class="main">
-	            	<h2 class="tit"><span class="down">ÏÂÔØ</span></h2>
-	                <p>EZ CMS  ÊÇÒ»¿îÃâ·Ñ ¿ìËÙ °²È« ÎÈ¶¨ À©Õ¹ÐÔÇ¿µÄÎÄÕÂ¹ÜÀíÏµÍ³£¡</p>
-	                <p>EZ CMS  ²ÉÓÃJsp + SQL Server ¿ª·¢</p>
-	                <p>EZ CMS  ½ÓÏÂÀ´×¼±¸²ÉÓÃ JSP + MYSQL Êý¾Ý¿â</p>
-					<p><strong>ÎÒÃÇµÄÄ¿±ê£º</strong> ¿ª·¢×îÊÊºÏ¹ã´óÍøÓÑÊ¹ÓÃµÄJSPÎÄÕÂ¹ÜÀíÏµÍ³¡£</p>
-	                <p>ÇëÑ¡ÔñÊÊºÏÄúµÄÏÂÔØµØÖ·:</p>
+	            	<h2 class="tit"><span class="down">ä¸‹è½½</span></h2>
+	                <p>EZ CMS  æ˜¯ä¸€æ¬¾å…è´¹ å¿«é€Ÿ å®‰å…¨ ç¨³å®š æ‰©å±•æ€§å¼ºçš„æ–‡ç« ç®¡ç†ç³»ç»Ÿï¼</p>
+	                <p>EZ CMS  é‡‡ç”¨Jsp + SQL Server å¼€å‘</p>
+	                <p>EZ CMS  æŽ¥ä¸‹æ¥å‡†å¤‡é‡‡ç”¨ JSP + MYSQL æ•°æ®åº“</p>
+					<p><strong>æˆ‘ä»¬çš„ç›®æ ‡ï¼š</strong> å¼€å‘æœ€é€‚åˆå¹¿å¤§ç½‘å‹ä½¿ç”¨çš„JSPæ–‡ç« ç®¡ç†ç³»ç»Ÿã€‚</p>
+	                <p>è¯·é€‰æ‹©é€‚åˆæ‚¨çš„ä¸‹è½½åœ°å€:</p>
 	                <div class="line"></div> 
 	                <div id="download_buttons">
 		                <div style="padding:5px; background:#FFFFE8; border:dashed 1px #ccc;">  
@@ -32,25 +32,25 @@
 			                <p>MD5: </p>
 							<p>SHA1: </p>
 			                <ul class="mirrors">
-			                	<li>ÔÝÎÞÏÂÔØ</li>
+			                	<li>æš‚æ— ä¸‹è½½</li>
 			                </ul>
 						</div>
-		                <div style="margin:80px 0 5px;font-size:14px;color:#c00;"><strong>ÀúÊ·°æ±¾</strong></div>
-		                <div><strong>ÒÔÏÂ°æ±¾µÄ°²×°Çë²Î¿¼ÏÂÔØRARÎÄ¼þÖÐµÄ readme.txt</strong></div>
+		                <div style="margin:80px 0 5px;font-size:14px;color:#c00;"><strong>åŽ†å²ç‰ˆæœ¬</strong></div>
+		                <div><strong>ä»¥ä¸‹ç‰ˆæœ¬çš„å®‰è£…è¯·å‚è€ƒä¸‹è½½RARæ–‡ä»¶ä¸­çš„ readme.txt</strong></div>
 		               	<div class="line"></div>
 	                	<br />
 	                </div>          
 				</div>
                 <div class="sidebar">
-                <h2><span class="intrd">EZ CMSÌØÐÔ</span></h2>
+                <h2><span class="intrd">EZ CMSç‰¹æ€§</span></h2>
                 <ul>
-					<li>×î´ó³Ì¶ÈÄ£Äâ Windows XP ½çÃæ¼°²Ù×÷Ï°¹ß£¬ÈÃÄú¿ìËÙÈëÊÖLinux</li> 
-					<li>½«ËùÓÐµÄÈí¼þºÍ¿â¸üÐÂµ½5ÔÂ28ÈÕ£¬°²×°Ê±²»Ðè²¦µôÍøÏß£¬Ò²²»Ðè³¤¾ÃµÈ´ý</li>
-					<li>¼¯³ÉFireFox ÔöÇ¿²å¼þ¡¢¼´Ê±Í¨ÐÅ¿Í»§¶Ë¡¢·½±ãÄúÓÃ»§ÉÏÍø³åÀË </li>
-					<li>¼¯³É¹¦ÄÜÇ¿´ó½çÃæÓÑºÃµÄ SMPlayer¡¢Audacious µÈÃ½Ìå²¥·ÅÆ÷£¬·½±ãÓÃ»§ÏíÊÜÓ°ÒôÓéÀÖÉú»î </li>
-					<li>¼¯³É CompizConfig ×ÀÃæÌØÐ§¹ÜÀíÆ÷£¬¼¸ºõ¿ÉÒÔÊµÏÖËùÓÐµÄÊÓ¾õÌØÐ§£¬Âú×ãÄúµÄÊÓ¾õÐèÇó</li>
-					<li>¼¯³ÉÁË±à³Ì£¬ÒôÊÓÆµ±à¼­µÈ×¨ÒµÈí¼þ¡£</li>
-					<li>¼¯³É Wine Ä£ÄâÆ÷Æ½Ì¨£¬ÈÃÄúµÄ Linux Ò²ÄÜÔËÐÐWindows³ÌÐò </li>            
+					<li>æœ€å¤§ç¨‹åº¦æ¨¡æ‹Ÿ Windows XP ç•Œé¢åŠæ“ä½œä¹ æƒ¯ï¼Œè®©æ‚¨å¿«é€Ÿå…¥æ‰‹Linux</li> 
+					<li>å°†æ‰€æœ‰çš„è½¯ä»¶å’Œåº“æ›´æ–°åˆ°5æœˆ28æ—¥ï¼Œå®‰è£…æ—¶ä¸éœ€æ‹¨æŽ‰ç½‘çº¿ï¼Œä¹Ÿä¸éœ€é•¿ä¹…ç­‰å¾…</li>
+					<li>é›†æˆFireFox å¢žå¼ºæ’ä»¶ã€å³æ—¶é€šä¿¡å®¢æˆ·ç«¯ã€æ–¹ä¾¿æ‚¨ç”¨æˆ·ä¸Šç½‘å†²æµª </li>
+					<li>é›†æˆåŠŸèƒ½å¼ºå¤§ç•Œé¢å‹å¥½çš„ SMPlayerã€Audacious ç­‰åª’ä½“æ’­æ”¾å™¨ï¼Œæ–¹ä¾¿ç”¨æˆ·äº«å—å½±éŸ³å¨±ä¹ç”Ÿæ´» </li>
+					<li>é›†æˆ CompizConfig æ¡Œé¢ç‰¹æ•ˆç®¡ç†å™¨ï¼Œå‡ ä¹Žå¯ä»¥å®žçŽ°æ‰€æœ‰çš„è§†è§‰ç‰¹æ•ˆï¼Œæ»¡è¶³æ‚¨çš„è§†è§‰éœ€æ±‚</li>
+					<li>é›†æˆäº†ç¼–ç¨‹ï¼ŒéŸ³è§†é¢‘ç¼–è¾‘ç­‰ä¸“ä¸šè½¯ä»¶ã€‚</li>
+					<li>é›†æˆ Wine æ¨¡æ‹Ÿå™¨å¹³å°ï¼Œè®©æ‚¨çš„ Linux ä¹Ÿèƒ½è¿è¡ŒWindowsç¨‹åº </li>            
                 </ul>
                 </div><!--/ sidebar-->
             </div><!--/ box-bd-->

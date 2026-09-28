@@ -1,7 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<% /****** ²Ëµ¥¹ÜÀí ******/ %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<% /****** èœå•ç®¡ç† ******/ %>
 <%
-request.setCharacterEncoding("GBK");
+request.setCharacterEncoding("UTF-8");
 String m = request.getParameter("m");
 
 %>
@@ -9,7 +9,7 @@ String m = request.getParameter("m");
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>    
-    <title>²Ëµ¥¹ÜÀí</title>
+    <title>èœå•ç®¡ç†</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -20,12 +20,12 @@ String m = request.getParameter("m");
 	<tr>
 		<td>
 			<div style="height:500px;width:80px;">
-				Ö÷²Ëµ¥
+				ä¸»èœå•
 			</div>	
 		</td>
 		<td>
 			<div style="height:500px;width:600px;">
-				×Ó²Ëµ¥
+				å­èœå•
 			</div>	
 		</td>
 	</tr>
