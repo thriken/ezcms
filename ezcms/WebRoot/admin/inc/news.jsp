@@ -1,53 +1,65 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="ezcms.dao.impl.*, ezcms.entity.*, java.util.*"%>
 <%
-NewsDao newsDao = new NewsDaoImpl();
-NewsClassDao ncDao = new NewsClassDaoImpl();
-AuthorDao aDao = new AuthorDaoImpl();
-List<News> nlist = new ArrayList<News>();
-
-News n = new News();
-NewsClass nc = new NewsClass();
-Author au = new Author();
-nlist = (ArrayList<News>)newsDao.listNews();
+if(session.getAttribute("Admin_Login") == null){ response.sendRedirect("../login.jsp"); return; }
+request.setCharacterEncoding("UTF-8");
+String op = request.getParameter("op");
+String kw = request.getParameter("kw");
+if("del".equals(op)){
+    try { new NewsDaoImpl().delNews(Integer.parseInt(request.getParameter("nid"))); } catch(Exception e){}
+}
+List<News> list = new ArrayList<News>();
+Map<Integer,String> clsMap = new HashMap<Integer,String>();
+try {
+    for(NewsClass c : new NewsClassDaoImpl().listAllClass()) clsMap.put(c.getClassId(), c.getName());
+} catch(Exception e){}
+try {
+    NewsDaoImpl dao = new NewsDaoImpl();
+    list = (kw != null && !kw.trim().isEmpty()) ? dao.searchNewsByTitleKeyword(kw.trim()) : dao.listNews();
+} catch(Exception e){
+    out.print("<div style='color:#e74c3c;padding:10px;'>读取新闻失败：" + e.getMessage() + "</div>");
+}
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
-    <title>newslist</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
+<meta charset="UTF-8">
+<title>新闻列表 - EZCMS</title>
+<link href="../static/css/admin-main.css" rel="stylesheet" type="text/css" />
 </head>
-<body bgcolor="#f8fcfc">
-<br />
-<table border="1" cellpadding="0" cellspacing="0" style="border: 1px solid #000000;">
-	<tr bgcolor="darkgreen" style="color:#fff;font-size:13px;padding:5px 2px;" >
-		<th width="30">ID
-		<th width="100">栏目
-		<th width="350">标题
-		<th width="80">作者
-		<th width="120">发布时间
-		<th width="80">操作
-	</tr>
-	<%
-		for(Iterator it = nlist.iterator();it.hasNext();){
-			n = (News)it.next();
-			nc = ncDao.getClassById(n.getClassId());
-			au = aDao.getAuthorById(n.getAuthorId());
-	%>
-	<tr bgcolor="#eeeeee" style="color:#000000;font-size:12px;padding:5px;">
-		<td align="center"><%=n.getNid() %></td>
-		<td align="center"><%=nc.getName() %></td>
-		<td><%=n.getTitle() %></td>
-		<td align="center"><%=au.getName() %></td>
-		<td align="center"><%=n.getPostTime().length() ==0 ? "无" :(n.getPostTime().length()>10 ?n.getPostTime().substring(0,10):n.getPostTime()) %></td>
-		<td align="center"><a href="">修改</a> <a href="">删除</a></td>
-	</tr>
-	<%		
-		}
-	 %>
-</table>
+<body>
+<div class="admin-main-content slide-in-left">
+    <h1>新闻列表</h1>
+
+    <form onsubmit="window.navigateTo('inc/news.jsp?kw=' + encodeURIComponent(this.kw.value)); return false;" style="margin-bottom:15px;">
+        <input type="text" name="kw" class="form-control" style="width:280px; display:inline-block;" placeholder="按标题搜索" value="<%= kw!=null?kw:"" %>" />
+        <button type="submit" class="btn btn-secondary" style="width:auto; padding:10px 20px;">搜索</button>
+        <a class="btn" style="width:auto; padding:10px 20px;" href="javascript:void(0)" onclick="window.navigateTo('inc/addnews.jsp')">+ 添加新闻</a>
+    </form>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>ID</th><th>标题</th><th>栏目</th><th>作者ID</th><th>发布时间</th><th>操作</th></tr>
+        </thead>
+        <tbody>
+        <% if(list.isEmpty()){ %>
+            <tr><td colspan="6" style="text-align:center; color:#999;">暂无新闻</td></tr>
+        <% } for(News n : list){ %>
+            <tr>
+                <td><%= n.getNid() %></td>
+                <td><%= n.getTitle()!=null?n.getTitle():"" %></td>
+                <td><%= clsMap.get(n.getClassId())!=null?clsMap.get(n.getClassId()):("["+n.getClassId()+"]") %></td>
+                <td><%= n.getAuthorId() %></td>
+                <td><%= n.getPostTime()!=null?n.getPostTime():"" %></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="window.navigateTo('inc/addnews.jsp?nid=<%= n.getNid() %>')">编辑</a>
+                    &nbsp;|&nbsp;
+                    <a href="javascript:void(0)" onclick="window.delItem('inc/news.jsp?op=del&nid=<%= n.getNid() %>','inc/news.jsp')">删除</a>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

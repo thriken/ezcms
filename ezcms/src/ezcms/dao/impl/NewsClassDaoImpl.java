@@ -16,14 +16,15 @@ public class NewsClassDaoImpl extends BaseDao implements NewsClassDao {
 	List<NewsClass> nlist = new ArrayList<NewsClass>();
  	
 	public int addClass(NewsClass nclass) throws Exception {
-		sql = "insert into ez_newsclass valuse(?,"+ nclass.getSort() +","+nclass.getType()+",?)";
-		String[] param = {nclass.getName(),nclass.getUrl()};
+		sql = "insert into ez_NewsClass(name,sort,type,url) values(?,?,?,?)";
+		String[] param = {nclass.getName(), String.valueOf(nclass.getSort()), String.valueOf(nclass.getType()), nclass.getUrl()};
 		return executeSQL(sql, param);
 	}
 
 	public int delClass(int classId) throws Exception {
-		sql= "del from ez_newsclass where classId = " + classId;
-		return executeSQL(sql, null);
+		sql = "delete from ez_NewsClass where classId = ?";
+		String[] param = {String.valueOf(classId)};
+		return executeSQL(sql, param);
 	}
 
 	public NewsClass getClassById(int classId)  throws Exception{
@@ -70,8 +71,8 @@ public class NewsClassDaoImpl extends BaseDao implements NewsClassDao {
 	}
 
 	public int updateClass(NewsClass nclass) throws Exception {
-		sql = "update ez_newsclass set name = ? where classId = " + nclass.getClassId();
-		String [] param = {nclass.getName()};
+		sql = "update ez_NewsClass set name = ?, sort = ?, type = ?, url = ? where classId = ?";
+		String[] param = {nclass.getName(), String.valueOf(nclass.getSort()), String.valueOf(nclass.getType()), nclass.getUrl(), String.valueOf(nclass.getClassId())};
 		return executeSQL(sql, param);
 	}
 }

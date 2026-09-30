@@ -16,24 +16,27 @@
 }
 
 .admin-header {
-    height: 80px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     position: relative;
     z-index: 100;
+    flex-shrink: 0;
 }
 
 .admin-main {
     display: flex;
     flex: 1;
     overflow: hidden;
+    background: #f1f5f9;
 }
 
 .admin-sidebar {
-    width: 200px;
-    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    width: 220px;
+    flex-shrink: 0;
+    background: #f1f5f9;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .admin-content {
@@ -143,6 +146,25 @@ window.navigateTo = function(url) {
             }, 100);
         })
         .catch(error => console.error('加载内容失败:', error));
+};
+
+// 以 AJAX 方式提交表单，成功后跳回指定页面
+window.doSubmit = function(form, back) {
+    var fd = new URLSearchParams(new FormData(form));
+    fetch(form.action, { method: 'POST', body: fd })
+        .then(r => r.text())
+        .then(msg => { if (msg && msg.trim()) alert(msg.trim()); window.navigateTo(back); })
+        .catch(e => alert('提交失败：' + e));
+    return false;
+};
+
+// 删除确认后异步删除并刷新列表
+window.delItem = function(url, back) {
+    if (confirm('确定要删除吗？此操作不可恢复。')) {
+        fetch(url)
+            .then(() => window.navigateTo(back))
+            .catch(e => alert('删除失败：' + e));
+    }
 };
 </script>
 </body>

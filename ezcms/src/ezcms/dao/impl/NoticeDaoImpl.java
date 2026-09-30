@@ -18,21 +18,21 @@ public class NoticeDaoImpl extends BaseDao implements NoticeDao {
 	List<Notice> nl = new ArrayList<Notice>();
 	
 	public int addNotice(Notice notice) throws Exception {
-		String sql = "insert ez_Notice values('?','?','?')";
-		String[] paras = {notice.getTitle(),notice.getNotice(),now};
-		System.out.println(notice.getTitle()+notice.getNotice()+now);
-		rows = executeSQL(sql, paras);
-		return rows;
+		String sql = "insert into ez_Notice(title,notice,postTime) values(?,?,?)";
+		String[] paras = {notice.getTitle(), notice.getNotice(), now};
+		return executeSQL(sql, paras);
 	}
 	
 	public int delNotice(int id) throws Exception{
-		// TODO 自动生成方法存根
-		return rows;
+		String sql = "delete from ez_Notice where id = ?";
+		String[] paras = {String.valueOf(id)};
+		return executeSQL(sql, paras);
 	}
 	
 	public int updateNotice(Notice notice) throws Exception{
-		// TODO 自动生成方法存根
-		return rows;
+		String sql = "update ez_Notice set title=?,notice=? where id=?";
+		String[] paras = {notice.getTitle(), notice.getNotice(), String.valueOf(notice.getId())};
+		return executeSQL(sql, paras);
 	}
 
 	public Notice getNewestNotice() throws Exception {

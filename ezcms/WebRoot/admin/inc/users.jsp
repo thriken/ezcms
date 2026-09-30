@@ -1,54 +1,43 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="ezcms.dao.impl.*, ezcms.entity.*, java.util.*"%>
 <%
-AuthorDao auDao = new AuthorDaoImpl();
-List<Author> aulist = (ArrayList<Author>)auDao.listAuthor();
-Author au = null;
+if(session.getAttribute("Admin_Login") == null){ response.sendRedirect("../login.jsp"); return; }
+request.setCharacterEncoding("UTF-8");
+String op = request.getParameter("op");
+if("del".equals(op)){
+    try { new AdminDaoImpl().delAdmin(Integer.parseInt(request.getParameter("id"))); } catch(Exception e){}
+}
+List<Admin> list = new ArrayList<Admin>();
+try { list = new AdminDaoImpl().listAdmin(); } catch(Exception e){
+    out.print("<div style='color:#e74c3c;padding:10px;'>读取管理员失败：" + e.getMessage() + "</div>");
+}
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>AuthorList</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-  </head>
-<body bgcolor="#f8fcfc"><br />
-<%
-if(aulist == null){
-	%>
-	<div align="center">暂无用户</div>
-	<%
-	}else{
- %>
-<table border="1" cellpadding="0" cellspacing="0" style="border: 1px solid #000000;">
-	<tr bgcolor="darkgreen" style="color:#fff;font-size:13px;padding:5px 2px;" >
-		<th width="30">ID
-		<th width="100">登录名
-		<th width="120">密码
-		<th width="30">性别
-		<th width="120">生日
-		<th width="120">注册时间
-		<th width="80">操作
-	</tr>
-	<%	
-		for(Iterator it = aulist.iterator();it.hasNext();){
-			au = (Author)it.next();
-	%>
-	<tr bgcolor="#eeeeee" style="color:#000000;font-size:12px;padding:5px;">
-		<td align="center"><%=au.getAuthorId() %></td>
-		<td align="center"><%=au.getName() %></td>
-		<td><%=au.getPassword() %></td>
-		<td align="center"><%=au.getSex()==0?"男":"女" %></td>
-		<td align="center"><%=au.getBirthday().length() ==0 ? "无" :au.getBirthday() %></td>
-		<td align="center"><%=au.getRegTime().length() ==0 ? "无" :au.getRegTime() %></td>
-		<td align="center"><a href="">修改</a> <a href="">删除</a></td>
-	</tr>
-	<%		
-			}
-		}
-	 %>
-</table>
-
+<head>
+<meta charset="UTF-8">
+<title>用户列表 - EZCMS</title>
+<link href="../static/css/admin-main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="admin-main-content slide-in-left">
+    <h1>管理员列表</h1>
+    <a class="btn" style="width:auto; padding:10px 24px; margin-bottom:15px;" href="javascript:void(0)" onclick="window.navigateTo('inc/adduser.jsp')">+ 添加管理员</a>
+    <table class="data-table">
+        <thead><tr><th>ID</th><th>账号</th><th>操作</th></tr></thead>
+        <tbody>
+        <% if(list.isEmpty()){ %><tr><td colspan="3" style="text-align:center;color:#999;">暂无管理员</td></tr><% } %>
+        <% for(Admin a : list){ %>
+            <tr>
+                <td><%= a.getId() %></td>
+                <td><%= a.getAdmin() %></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="window.delItem('inc/users.jsp?op=del&id=<%= a.getId() %>','inc/users.jsp')">删除</a>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

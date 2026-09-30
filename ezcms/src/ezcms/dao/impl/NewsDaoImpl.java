@@ -17,18 +17,23 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	List<News> nlist = new ArrayList<News>();
 	
 	public int addNews(News news)throws Exception {
-		// TODO 自动生成方法存根
-		return 0;
+		String sql = "insert into ez_News(classId,title,newsContent,description,postTime,authorId) values(?,?,?,?,?,?)";
+		String[] param = {String.valueOf(news.getClassId()), news.getTitle(), news.getNewsContent(),
+				news.getDescription(), news.getPostTime(), String.valueOf(news.getAuthorId())};
+		return executeSQL(sql, param);
 	}
 
 	public int delNews(int nid)throws Exception {
-		// TODO 自动生成方法存根
-		return 0;
+		String sql = "delete from ez_News where nid = ?";
+		String[] param = {String.valueOf(nid)};
+		return executeSQL(sql, param);
 	}
 
 	public int updateNews(News news) throws Exception{
-		// TODO 自动生成方法存根
-		return 0;
+		String sql = "update ez_News set classId=?,title=?,newsContent=?,description=?,postTime=?,authorId=? where nid=?";
+		String[] param = {String.valueOf(news.getClassId()), news.getTitle(), news.getNewsContent(),
+				news.getDescription(), news.getPostTime(), String.valueOf(news.getAuthorId()), String.valueOf(news.getNid())};
+		return executeSQL(sql, param);
 	}
 	
 	public News getNewsById(int nid)throws Exception {

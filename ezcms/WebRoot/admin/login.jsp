@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <p>请使用您的账户登录</p>
         </div>
         
-        <form id="loginform" name="loginform" action="admin/function/dologin.jsp" method="post" target="_self">
+        <form id="loginform" name="loginform" action="function/dologin.jsp" method="post" target="_self">
             <div class="form-group">
                 <label for="u">用户名</label>
                 <input type="text" class="form-control" id="u" name="u" placeholder="请输入用户名" required>

@@ -1,47 +1,47 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="ezcms.dao.impl.*, ezcms.entity.*, java.util.*"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-NoticeDao ndao = new NoticeDaoImpl();
-List<Notice> nlist = (ArrayList<Notice>)ndao.listNotice();
-Notice n = null;
+if(session.getAttribute("Admin_Login") == null){ response.sendRedirect("../login.jsp"); return; }
+request.setCharacterEncoding("UTF-8");
+String op = request.getParameter("op");
+if("del".equals(op)){
+    try { new NoticeDaoImpl().delNotice(Integer.parseInt(request.getParameter("id"))); } catch(Exception e){}
+}
+List<Notice> list = new ArrayList<Notice>();
+try { list = new NoticeDaoImpl().listNotice(); } catch(Exception e){
+    out.print("<div style='color:#e74c3c;padding:10px;'>读取公告失败：" + e.getMessage() + "</div>");
+}
 %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<title>noticelist</title>
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="expires" content="0" />    
-<style>
-a{text-decoration: none;}
-</style>
+<meta charset="UTF-8">
+<title>公告列表 - EZCMS</title>
+<link href="../static/css/admin-main.css" rel="stylesheet" type="text/css" />
 </head>
-<body bgcolor="#f8fcfc"><br />
-<table border="1" cellpadding="0" cellspacing="0" style="border: 1px solid #000000;">
-	<tr bgcolor="darkgreen" style="color:#fff;font-size:13px;padding:5px 2px;" >
-		<th width="30" >ID</th>
-		<th width="120" >标题</th>
-		<th width="400" >内容</th>
-		<th width="120" >发布时间</th>
-		<th width="80" >操作</th>
-	</tr>
-	<%
-		for(Iterator it = nlist.iterator();it.hasNext();){
-			n = (Notice)it.next();
-	%>
-	<tr bgcolor="#eeeeee" style="color:#000000;font-size:12px;padding:5px;">
-		<td align="center"><%=n.getId() %></td>
-		<td><%=n.getTitle() %></td>
-		<td><%=n.getNotice().length()>40 ? (n.getNotice().substring(0,40) + "........."):n.getNotice() %></td>
-		<td align="center"><%=n.getPostTime().length() ==0 ? "无" :(n.getPostTime().length()>10 ?n.getPostTime().substring(0,10):n.getPostTime()) %></td>
-		<td align="center"><a href="">修改</a> <a href="">删除</a></td>
-	</tr>
-	<%		
-		}
-	 %>
-</table>
+<body>
+<div class="admin-main-content slide-in-left">
+    <h1>公告列表</h1>
+    <a class="btn" style="width:auto; padding:10px 24px; margin-bottom:15px;" href="javascript:void(0)" onclick="window.navigateTo('inc/addnotice.jsp')">+ 添加公告</a>
+    <table class="data-table">
+        <thead><tr><th>ID</th><th>标题</th><th>内容</th><th>发布时间</th><th>操作</th></tr></thead>
+        <tbody>
+        <% if(list.isEmpty()){ %><tr><td colspan="5" style="text-align:center;color:#999;">暂无公告</td></tr><% } %>
+        <% for(Notice t : list){ %>
+            <tr>
+                <td><%= t.getId() %></td>
+                <td><%= t.getTitle()!=null?t.getTitle():"" %></td>
+                <td style="max-width:420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><%= t.getNotice()!=null?t.getNotice():"" %></td>
+                <td><%= t.getPostTime()!=null?t.getPostTime():"" %></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="window.navigateTo('inc/addnotice.jsp?id=<%= t.getId() %>')">编辑</a>
+                    &nbsp;|&nbsp;
+                    <a href="javascript:void(0)" onclick="window.delItem('inc/notice.jsp?op=del&id=<%= t.getId() %>','inc/notice.jsp')">删除</a>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

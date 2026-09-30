@@ -1,94 +1,53 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page import="ezcms.dao.*,ezcms.dao.impl.*,ezcms.entity.*" %>
-<% /****** 菜单管理 ******/ %>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%
-request.setCharacterEncoding("UTF-8");
-String mname = request.getParameter("mid");
-int mid = 1;
-if(mname!=null){
-	mid = Integer.parseInt(mname);
-}
-ManageMenuDao mmDao = new ManageMenuDaoImpl();
-LeftMenuDaoImpl lmDao = new LeftMenuDaoImpl();
-List mmlist = mmDao.getMianMenu();
-List lmlist = null;
-MainMenu mm = null; 
-LeftMenu lm = null;
+if(session.getAttribute("Admin_Login") == null){ response.sendRedirect("../login.jsp"); return; }
+String op = request.getParameter("op");
 %>
-
+<!DOCTYPE html>
 <html>
-<head>    
-    <title>菜单管理</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0"> 
-	<style>
-	.inputsolid{border:1px solid;}
-	.buttonsolid{border:1px solid;background-color: #9999ff;cursor:hand;}
-	</style>   
+<head>
+<meta charset="UTF-8">
+<title>菜单管理 - EZCMS</title>
+<link href="../static/css/admin-main.css" rel="stylesheet" type="text/css" />
 </head>
-<body bgcolor="#f8fcfc" style="font-size:13px;">
-<table border="0" style="border:3px solid green;padding:3px;" cellpadding="0" cellspacing="0">
-	<tr>
-		<td style="border-right: 3px solid green;">
-			<div style="height:500px;width:100px;font-weight: +1;font-size:13px;font:Verdana, Arial, Helvetica, sans-serif;" align="center">
-			&gt;&gt;主菜单项&lt;&lt;<br />
-	<%
-		for(Iterator it = mmlist.iterator();it.hasNext();){
-		mm = (MainMenu)it.next();
-		if(mm.getIsUrl()==0){
-	%>
-				<hr  style="border-bottom:3px solid green;width:100% " />
-				<a href="?mid=<%=mm.getId() %>" target="_self" style="text-decoration: none;padding:3px 1px;"><%=mm.getMname().length()<4 ? "&nbsp;&nbsp;"+mm.getMname()+"&nbsp;&nbsp;": mm.getMname()%>&nbsp;<img src="../static/images/<%=(mid == mm.getId())?"open.gif": "close.gif"%>" border=0 height="16" width="16" /></a><br />
-			<%
-				} 
-			}
-			%>
-			</div>	
-		</td>
-		<td>
-			<div style="height:500px;width:750px;text-align: center;font-size:14px;">
-				&gt;&gt;子菜单&lt;&lt;<br /><hr  style="border-bottom:3px solid green;width:100% " />
-				<table border=1 cellpadding="0" cellspacing="0" style="border:1px solid green;">
-				<tr bgcolor="green" style="color:#fcfcfc;font-size:13px;padding:5px 0px 3px 0px;">
-					<th width="70">显示顺序</th><th width="140">菜单名称</th><th width="80">类型</th><th width="250">参数</th><th width="140px;">操作</th>
-				</tr>
-			<%
-				lmlist = lmDao.getLeftMenu(mid);
-				for(Iterator it2 = lmlist.iterator();it2.hasNext();){
-					lm = (LeftMenu)it2.next();
-			%>
-					<tr style="font-size:13px;padding-top:2px;" >
-					  <form name="main<%=mid %>" action="" method="post" >
-						<input type="hidden" name="id" value="<%=lm.getCid() %>" >
-						<input type="hidden" name="mid" value="<%=lm.getMid() %>" >
-						<td align="center"><input class="inputsolid" name="sort" value="<%=lm.getSort() %>" style="width:18px;"></td>
-						<td>&nbsp;<input class="inputsolid" name="cname" value="<%=lm.getCname() %>" style="width:130px;"></td>
-						<td align="center">
-						<%
-							if(lm.getIsUrl()==0){
-						 %>
-						<input type="radio" name="isUrl" value="0" checked="checked">别名<input type="radio" name="isUrl" value="1">链接
-						<%
-						}else{
-						 %>
-						<input type="radio" name="isUrl" value="0">别名<input type="radio" name="isUrl" value="1" checked="checked">链接
-						<%
-							}
-						 %>
-						</td>
-						<td align="center"><input class="inputsolid" name="text" value="<%=lm.getText() %>" style="width:230px;" /></td>
-						<td align="center"><input class="buttonsolid" type="submit" value="提交" style="width:50px;">&nbsp;&nbsp;<input class="buttonsolid" type="button" value="删除" style="width:50px;"></td>
-					  </form>
-					</tr>
-		<%
-			}
-	%>			
-				</table>
-				<div style="margin:5px 25px;" align="left">共有<%=lmlist.size() %>个子菜单。<span style="color:red">&lt;别名文件位于amdin/inc目录下,链接文件位于amdin目录下。</span>&gt;</div>
-			</div>	
-		</td>
-	</tr>
-</table>
+<body>
+<div class="admin-main-content slide-in-left">
+    <h1>菜单管理</h1>
+
+    <% if("addmain".equals(op)){ %>
+    <div class="card">
+        <div class="card-header"><h2 class="card-title">添加主菜单（占位）</h2></div>
+        <p>主菜单结构对应 <code>ezcms.entity.MainMenu</code> / <code>ManageMenu</code>，相关 DAO 实现已存在（LeftMenuDaoImpl / ManageMenuDaoImpl）。</p>
+        <form onsubmit="alert('菜单保存功能待接入'); return false;">
+            <div class="form-group"><label>菜单名称</label><input type="text" class="form-control" /></div>
+            <div class="form-group"><label>排序</label><input type="text" class="form-control" value="9" /></div>
+            <div class="text-center"><button type="submit" class="btn" style="width:auto; padding:10px 30px;">保存（占位）</button></div>
+        </form>
+    </div>
+    <% } else if("addsub".equals(op)){ %>
+    <div class="card">
+        <div class="card-header"><h2 class="card-title">添加子菜单（占位）</h2></div>
+        <form onsubmit="alert('子菜单保存功能待接入'); return false;">
+            <div class="form-group"><label>所属主菜单</label><input type="text" class="form-control" /></div>
+            <div class="form-group"><label>子菜单名称</label><input type="text" class="form-control" /></div>
+            <div class="form-group"><label>链接地址</label><input type="text" class="form-control" /></div>
+            <div class="text-center"><button type="submit" class="btn" style="width:auto; padding:10px 30px;">保存（占位）</button></div>
+        </form>
+    </div>
+    <% } else { %>
+    <div class="card">
+        <div class="card-header"><h2 class="card-title">后台导航结构</h2></div>
+        <p>当前后台导航由 <code>static/left.jsp</code> 渲染，结构如下（功能均已接数据或占位）：</p>
+        <ul style="line-height:2;">
+            <li><strong>首页</strong>：快捷选项（控制台）、欢迎页</li>
+            <li><strong>公告</strong>：公告列表、添加公告</li>
+            <li><strong>新闻</strong>：新闻列表、新闻栏目、添加新闻</li>
+            <li><strong>用户</strong>：用户列表、添加用户</li>
+            <li><strong>广告</strong>：广告列表（占位）、添加广告（占位）</li>
+            <li><strong>菜单管理</strong>：本页（占位）</li>
+        </ul>
+    </div>
+    <% } %>
+</div>
 </body>
 </html>

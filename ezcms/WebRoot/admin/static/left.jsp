@@ -42,7 +42,7 @@ String name = (String)session.getAttribute("Admin_Login");
 	}
 	
 	#menu {
-		margin: 10px;
+		margin: 0 10px 15px 10px;
 	}
 	
 	#nav {
@@ -52,53 +52,52 @@ String name = (String)session.getAttribute("Admin_Login");
 		overflow: hidden;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 		border: 1px solid rgba(255, 255, 255, 0.2);
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: flex-start;
-		align-items: center;
-		gap: 0;
+		display: block;
+		margin: 0 10px 15px 10px;
+		padding: 0;
 	}
 	
 	#nav li {
-		border-bottom: none;
+		display: block;
+		width: 100%;
+		border-bottom: 1px solid #eef1f4;
 		transition: all 0.3s ease;
-		display: inline-block;
-		white-space: nowrap;
+	}
+	
+	#nav li:last-child {
+		border-bottom: none;
 	}
 	
 	#nav li:hover {
-		background: rgba(52, 152, 219, 0.1);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-		border-radius: 4px;
+		background: rgba(52, 152, 219, 0.08);
 	}
 	
 	#nav li a {
-		display: inline-block;
-		padding: 12px 15px;
+		display: block;
+		padding: 13px 16px 13px 34px;
 		text-decoration: none;
 		color: #2c3e50;
 		font-weight: 500;
+		font-size: 15px;
 		transition: all 0.3s ease;
 		position: relative;
 		border-left: 3px solid transparent;
-		border-radius: 4px;
-		margin: 2px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	
 	#nav li a:hover {
 		color: #3498db;
 		background: rgba(52, 152, 219, 0.1);
 		border-left: 3px solid #3498db;
-		padding-left: 18px;
-		transform: scale(1.05);
+		padding-left: 38px;
 	}
 	
 	#nav li a:before {
 		content: "▶";
 		position: absolute;
-		left: 6px;
+		left: 14px;
 		color: #bdc3c7;
 		font-size: 10px;
 		transition: all 0.3s ease;
@@ -190,46 +189,45 @@ String name = (String)session.getAttribute("Admin_Login");
 	<div id=menu>
 		<ul id=nav>
 		<%
-		if(menu.equals("menu")){
+		if("menu".equals(menu)){
 		%>
-			<li><a id=1 href="../inc/menu.jsp"  target="main" onclick="mmclick('1')"><span>菜单管理</span></a></li>
-			<li><a id=2 href="../inc/menu.jsp"  target="main" onclick="mmclick('2')"><span>添加主菜单</span></a></li>
-			<li><a id=3 href="../inc/menu.jsp"  target="main" onclick="mmclick('3')"><span>添加子菜单</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/menu.jsp')"><span>菜单管理</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/menu.jsp?op=addmain')"><span>添加主菜单</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/menu.jsp?op=addsub')"><span>添加子菜单</span></a></li>
 		<%	
 		}
-		if(menu.equals("index")){
+		if("index".equals(menu)){
 		%>
-			<li><a id=1 href="../inc/quick.jsp"  target="main" onclick="mmclick('1')"><span>快捷选项</span></a></li>
-			<li><a id=2 href="../static/main.jsp"  target="main" onclick="mmclick('2')"><span>欢迎页</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/quick.jsp')"><span>快捷选项</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('static/main.jsp')"><span>欢迎页</span></a></li>
 		<%		
 		}
-		if(menu.equals("notice")){
+		if("notice".equals(menu)){
 		%>
-			<li><a id=2 href="../inc/notice.jsp"  target="main" onclick="mmclick('2')"><span>公告列表</span></a></li>
-			<li><a id=1 href="../inc/addnotice.jsp"  target="main" onclick="mmclick('1')"><span>添加公告</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/notice.jsp')"><span>公告列表</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/addnotice.jsp')"><span>添加公告</span></a></li>
 		<%		
 		}
-		if(menu.equals("news")){
+		if("news".equals(menu)){
 		%>
-			<li><a id=1 href="../inc/news.jsp"  target="main" onclick="mmclick('1')"><span>新闻列表</span></a></li>
-			<li><a id=2 href="../inc/newsclass.jsp"  target="main" onclick="mmclick('2')"><span>新闻栏目</span></a></li>
-			<li><a id=3 href="../inc/addnews.jsp"  target="main" onclick="mmclick('3')"><span>添加新闻</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/news.jsp')"><span>新闻列表</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/newsclass.jsp')"><span>新闻栏目</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/addnews.jsp')"><span>添加新闻</span></a></li>
 		<%		
 		}
-		if(menu.equals("user")){
+		if("user".equals(menu)){
 		%>
-			<li><a id=2 href="../inc/users.jsp"  target="main" onclick="mmclick('2')"><span>用户列表</span></a></li>
-			<li><a id=1 href="../inc/adduser.jsp"  target="main" onclick="mmclick('1')"><span>添加用户</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/users.jsp')"><span>用户列表</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/adduser.jsp')"><span>添加用户</span></a></li>
 		<%		
 		}
-		if(menu.equals("ad")){
+		if("ad".equals(menu)){
 		%>
-			<li><a id=2 href="../inc/ads.jsp"  target="main" onclick="mmclick('2')"><span>广告列表</span></a></li>
-			<li><a id=1 href="../inc/addad.jsp"  target="main" onclick="mmclick('1')"><span>添加广告</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/ads.jsp')"><span>广告列表</span></a></li>
+			<li><a href="javascript:void(0)" onclick="window.navigateTo('inc/addad.jsp')"><span>添加广告</span></a></li>
 		<%		
 		}
 		%>
-			<li><div class="line" style="width:160px;height:20px; display:inline" ></div></li>
 		</ul>
 	</div>
 		<%
